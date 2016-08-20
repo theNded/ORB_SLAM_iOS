@@ -21,3 +21,8 @@ xcuserdata/
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
+
+## Dependency
+dependency/
+ORBvoc.txt
+.DS_Store
