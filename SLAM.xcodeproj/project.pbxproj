@@ -970,7 +970,6 @@
 				TargetAttributes = {
 					703A4D5F1BCC29E8004F6B5D = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = GA9D72HP2Y;
 					};
 				};
 			};
@@ -1237,7 +1236,7 @@
 					"$(PROJECT_DIR)/dependency/ofxiOSBoost/libs/boost/ios",
 					"$(PROJECT_DIR)/dependency/cholmod/libs",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = io.xinsun.SLAM;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.ttx;
 				PRODUCT_NAME = SLAM;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -1275,7 +1274,7 @@
 					"$(PROJECT_DIR)/dependency/cholmod/libs",
 				);
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = io.xinsun.SLAM;
+				PRODUCT_BUNDLE_IDENTIFIER = cn.ttx;
 				PRODUCT_NAME = SLAM;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
