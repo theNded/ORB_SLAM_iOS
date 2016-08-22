@@ -14,9 +14,6 @@
 #import "Categories/ViewController+ORB_SLAM.h"
 #import "Categories/ViewController+PoseGraph.h"
 
-using namespace std;
-using namespace cv;
-
 @implementation ViewController
 
 - (void)viewDidLoad {    

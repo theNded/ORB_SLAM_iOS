@@ -15,12 +15,11 @@
 
 @implementation ViewController (RGBSource)
 
-bool isDone = true;
-
-cv::Mat            _tmp;
+cv::Mat            _inputImage;
 AVCaptureSession*  _session;
 AVCaptureDevice*   _device;
 dispatch_queue_t   _trackingQueue;
+bool               _isTracking = false;
 
 - (void) runFromAVFoundation {
     [self setupCamera];
@@ -98,25 +97,29 @@ dispatch_queue_t   _trackingQueue;
     [_session commitConfiguration];
 }
 
+// Main loop here
 - (void)captureOutput:(AVCaptureOutput *)captureOutput
 didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
        fromConnection:(AVCaptureConnection *)connection {
-    if (isDone) {
-        isDone = false;
-        _tmp = [ImageUtility cvMatFromCMSampleBufferRef: sampleBuffer];
+    if (! _isTracking) {
+        _isTracking = true;
+        _inputImage = [ImageUtility cvMatFromCMSampleBufferRef: sampleBuffer];
         
         dispatch_async(_trackingQueue, ^{
             cv::Mat dummyDepth;
-            cv::Mat colorInput;
-            cv::resize(_tmp, colorInput, cv::Size(320, 240));
-            cv::cvtColor(colorInput, colorInput, CV_BGRA2GRAY);
+            cv::Mat color;
+            cv::resize(_inputImage, color, cv::Size(320, 240));
+            cv::cvtColor(color, color, CV_BGRA2GRAY);
     
+            // ORB
             [self.profiler start];
-            [self trackFrame:colorInput andDepth:dummyDepth];
+            [self trackFrame:color andDepth:dummyDepth];
             [self.profiler end];
-            [self showColorImage:_tmp];
+            
+            // Info
+            [self showColorImage:_inputImage];
             [self updateInfoDisplay];
-            isDone = true;
+            _isTracking = false;
         });
     }
 }

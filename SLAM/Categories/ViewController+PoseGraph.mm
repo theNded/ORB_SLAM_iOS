@@ -16,7 +16,6 @@ bool initialPose = true;
 int poseCount = 0;
 
 - (void) initScene {
-    
     SCNScene *scene = [SCNScene scene];
     
     SCNNode *ambientLightNode = [SCNNode node];
@@ -40,12 +39,9 @@ int poseCount = 0;
     self.sceneView.scene = scene;
     self.sceneView.allowsCameraControl = true;
     self.sceneView.backgroundColor = [UIColor whiteColor];
+    
     geometryNode = [SCNNode node];
-}
-
-- (void) updateGeometry {
-    [geometryNode removeFromParentNode];
-    [self.sceneView.scene.rootNode addChildNode:geometryNode];
+    [scene.rootNode addChildNode:geometryNode];
 }
 
 - (SCNNode *)lineBetweenX:(SCNVector3)X Y:(SCNVector3)Y {
@@ -54,9 +50,8 @@ int poseCount = 0;
     int indices[] = {0, 1};
     SCNGeometrySource *vertexSource = [SCNGeometrySource geometrySourceWithVertices:positions
                                                                               count:2];
-    NSData *indexData = [NSData dataWithBytes:indices
-                                       length:sizeof(indices)];
-    SCNGeometryElement *element = [SCNGeometryElement geometryElementWithData:indexData
+    SCNGeometryElement *element = [SCNGeometryElement geometryElementWithData: [NSData dataWithBytes:indices
+                                                                                              length:sizeof(indices)]
                                                                 primitiveType:SCNGeometryPrimitiveTypeLine
                                                                primitiveCount:1
                                                                 bytesPerIndex:sizeof(int)];
@@ -69,24 +64,23 @@ int poseCount = 0;
 }
 
 - (void) addPose:(SCNVector3) point {
-    
     if (!initialPose)
         [geometryNode addChildNode:[self lineBetweenX:prevPoint Y:point]];
     else
         initialPose = false;
     prevPoint = point;
     poseCount++;
-    if (poseCount%100==0) {
-        geometryNode = [geometryNode flattenedClone];
-        poseCount = 0;
-    }
-    [self updateGeometry];
 }
 
 - (void) resetSceneView {
     initialPose = true;
+    for (SCNNode *node in [geometryNode childNodes]) {
+        [node removeFromParentNode];
+    }
+    [geometryNode removeFromParentNode];
+    
     geometryNode = [SCNNode node];
-    [self updateGeometry];
+    [self.sceneView.scene.rootNode addChildNode:geometryNode];
 }
 
 @end

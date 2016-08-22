@@ -67,7 +67,6 @@
 		707AC44C1BD1780000B2D660 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 707AC4491BD1780000B2D660 /* CoreImage.framework */; };
 		707AC44D1BD1780000B2D660 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 707AC44A1BD1780000B2D660 /* CoreVideo.framework */; };
 		707AC44F1BD1781800B2D660 /* ExternalAccessory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 707AC44E1BD1781800B2D660 /* ExternalAccessory.framework */; };
-		7095A9181BEA86CD00517238 /* ViewController+ImageFile.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7095A9141BEA86CD00517238 /* ViewController+ImageFile.mm */; };
 		70CFB8DA1BCD58ED002ABEC7 /* boost.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70CFB8D91BCD58ED002ABEC7 /* boost.a */; };
 		70CFB8DB1BCD5F64002ABEC7 /* libjpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7080CEC11BCD18D8007E5713 /* libjpeg.a */; };
 		70CFB8DD1BCE4B30002ABEC7 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70CFB8DC1BCE4B30002ABEC7 /* Accelerate.framework */; };
@@ -350,8 +349,6 @@
 		707AC44A1BD1780000B2D660 /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
 		707AC44E1BD1781800B2D660 /* ExternalAccessory.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ExternalAccessory.framework; path = System/Library/Frameworks/ExternalAccessory.framework; sourceTree = SDKROOT; };
 		7080CEC11BCD18D8007E5713 /* libjpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libjpeg.a; path = dependency/libjpeg.a; sourceTree = "<group>"; };
-		7095A9131BEA86CD00517238 /* ViewController+ImageFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ViewController+ImageFile.h"; path = "Categories/ViewController+ImageFile.h"; sourceTree = "<group>"; };
-		7095A9141BEA86CD00517238 /* ViewController+ImageFile.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "ViewController+ImageFile.mm"; path = "Categories/ViewController+ImageFile.mm"; sourceTree = "<group>"; };
 		70CFB8D91BCD58ED002ABEC7 /* boost.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = boost.a; path = dependency/ofxiOSBoost/libs/boost/ios/boost.a; sourceTree = "<group>"; };
 		70CFB8DC1BCE4B30002ABEC7 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
 		70CFBA291BCFAA6D002ABEC7 /* Metal.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Metal.framework; path = System/Library/Frameworks/Metal.framework; sourceTree = SDKROOT; };
@@ -855,8 +852,6 @@
 		70DD4C571BD56746001A6A68 /* DataSource */ = {
 			isa = PBXGroup;
 			children = (
-				7095A9131BEA86CD00517238 /* ViewController+ImageFile.h */,
-				7095A9141BEA86CD00517238 /* ViewController+ImageFile.mm */,
 				701ECDDD1BD78ED300FA3E7D /* ViewController+RGBSource.h */,
 				701ECDDE1BD78ED300FA3E7D /* ViewController+RGBSource.mm */,
 			);
@@ -1100,7 +1095,6 @@
 				70DD4C621BD59059001A6A68 /* CVImageIO.mm in Sources */,
 				7038E6EE1BD16F9800C5EEFC /* Profiler.mm in Sources */,
 				7038E6ED1BD16F9800C5EEFC /* Transforms.mm in Sources */,
-				7095A9181BEA86CD00517238 /* ViewController+ImageFile.mm in Sources */,
 				701ECDDF1BD78ED300FA3E7D /* ViewController+RGBSource.mm in Sources */,
 				7038E6EB1BD16F9800C5EEFC /* Shaders.metal in Sources */,
 				7038E6761BD16F9800C5EEFC /* AppDelegate.m in Sources */,

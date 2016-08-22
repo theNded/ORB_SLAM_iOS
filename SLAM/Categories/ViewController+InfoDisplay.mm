@@ -48,13 +48,19 @@ using namespace cv;
                 break;
             case 3 : {
                 [self.stateLabel setText:[NSString stringWithFormat:@"state: %@", @"WORKING"]];
+                [self.nKFLabel setText:[NSString stringWithFormat:@"nKF: %d", [self getnKF]]];
+                [self.nMPLabel setText:[NSString stringWithFormat:@"nMP: %d", [self getnMP]]];
+                
                 Mat R = [self getCurrentPose_R];
                 Mat T = [self getCurrentPose_T];
                 Mat center = -R.t()*T;
-                [self addPose:SCNVector3Make(-center.at<float>(0), center.at<float>(1), center.at<float>(2))];
+
+                // Negative signs since Image's y axis is different from world's
+                [self addPose:SCNVector3Make(center.at<float>(0), -center.at<float>(1), -center.at<float>(2))];
+                
+                
                 [self drawObjectWith:R andT:T];
-                [self.nKFLabel setText:[NSString stringWithFormat:@"nKF: %d", [self getnKF]]];
-                [self.nMPLabel setText:[NSString stringWithFormat:@"nMP: %d", [self getnMP]]];
+
                 break;
             }
             case 4 :

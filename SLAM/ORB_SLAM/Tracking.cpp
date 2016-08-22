@@ -132,9 +132,6 @@ namespace ORB_SLAM
     
     void Tracking::Run()
     {
-        while(true) {
-            boost::this_thread::sleep(boost::posix_time::milliseconds(30));
-        }
     }
     
     
