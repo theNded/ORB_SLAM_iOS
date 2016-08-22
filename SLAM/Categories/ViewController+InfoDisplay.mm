@@ -53,13 +53,10 @@ using namespace cv;
                 
                 Mat R = [self getCurrentPose_R];
                 Mat T = [self getCurrentPose_T];
-                Mat center = -R.t()*T;
 
-                // Negative signs since Image's y axis is different from world's
-                [self addPose:SCNVector3Make(center.at<float>(0), -center.at<float>(1), -center.at<float>(2))];
-                
-                
-                [self drawObjectWith:R andT:T];
+                [self addCameraWithR:R andT:T];
+                [self addMapPoints: [self getMapPoints]];
+                //[self drawObjectWith:R andT:T];
 
                 break;
             }

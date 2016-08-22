@@ -104,6 +104,10 @@ bool isVocabLoaded = false;
     return _World->KeyFramesInMap();
 }
 
+- (std::vector<ORB_SLAM::MapPoint *>) getMapPoints {
+    return _World->GetAllMapPoints();
+}
+
 - (int) getnMP {
     return _World->MapPointsInMap();
 }

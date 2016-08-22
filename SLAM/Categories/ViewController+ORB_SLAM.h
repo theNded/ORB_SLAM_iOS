@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#include "../ORB_SLAM/MapPoint.hpp"
 
 @interface ViewController (ORB_SLAM)
     
@@ -20,6 +21,7 @@
 - (cv::Mat) getCurrentPose_T;
 - (int) getnKF;
 - (int) getnMP;
+- (std::vector<ORB_SLAM::MapPoint *>) getMapPoints;
 - (void) requestSLAMReset;
 
 @end

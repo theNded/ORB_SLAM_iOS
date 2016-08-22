@@ -18,7 +18,7 @@
 		7038E6771BD16F9800C5EEFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7038E56F1BD16F9800C5EEFC /* Assets.xcassets */; };
 		7038E6781BD16F9800C5EEFC /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7038E5701BD16F9800C5EEFC /* iPad.storyboard */; };
 		7038E67A1BD16F9800C5EEFC /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7038E5731BD16F9800C5EEFC /* iPhone.storyboard */; };
-		7038E67B1BD16F9800C5EEFC /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7038E5741BD16F9800C5EEFC /* Launch Screen.storyboard */; };
+		7038E67B1BD16F9800C5EEFC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7038E5741BD16F9800C5EEFC /* LaunchScreen.storyboard */; };
 		7038E67C1BD16F9800C5EEFC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7038E5751BD16F9800C5EEFC /* main.m */; };
 		7038E67D1BD16F9800C5EEFC /* Converter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7038E5771BD16F9800C5EEFC /* Converter.cpp */; };
 		7038E67E1BD16F9800C5EEFC /* ORBvoc.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7038E57A1BD16F9800C5EEFC /* ORBvoc.txt */; };
@@ -105,7 +105,7 @@
 		7038E5711BD16F9800C5EEFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/iPad.storyboard; sourceTree = "<group>"; };
 		7038E5721BD16F9800C5EEFC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7038E5731BD16F9800C5EEFC /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
-		7038E5741BD16F9800C5EEFC /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		7038E5741BD16F9800C5EEFC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7038E5751BD16F9800C5EEFC /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7038E5771BD16F9800C5EEFC /* Converter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Converter.cpp; sourceTree = "<group>"; };
 		7038E5781BD16F9800C5EEFC /* Converter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Converter.hpp; sourceTree = "<group>"; };
@@ -825,7 +825,7 @@
 				7038E5721BD16F9800C5EEFC /* Info.plist */,
 				7038E5701BD16F9800C5EEFC /* iPad.storyboard */,
 				7038E5731BD16F9800C5EEFC /* iPhone.storyboard */,
-				7038E5741BD16F9800C5EEFC /* Launch Screen.storyboard */,
+				7038E5741BD16F9800C5EEFC /* LaunchScreen.storyboard */,
 				7038E5751BD16F9800C5EEFC /* main.m */,
 			);
 			name = Main;
@@ -987,7 +987,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7038E67B1BD16F9800C5EEFC /* Launch Screen.storyboard in Resources */,
+				7038E67B1BD16F9800C5EEFC /* LaunchScreen.storyboard in Resources */,
 				7038E6E51BD16F9800C5EEFC /* box.obj in Resources */,
 				7038E6981BD16F9800C5EEFC /* FindBLAS.cmake in Resources */,
 				70E7883E1BD6FF6A006949CA /* CMakeLists.txt in Resources */,
