@@ -24,12 +24,7 @@ char tempName_IF[2000];
 bool isDone_IF = true;
 
 - (void) initDataInput {
-    [self.recordBtn setAlpha:0];
     trackingQueue_IF = dispatch_queue_create("tracking", DISPATCH_QUEUE_SERIAL);
-}
-
-- (void) TurnOnRecording {
-    
 }
 
 - (void) StartDataStream {

@@ -15,7 +15,7 @@ SCNVector3 prevPoint;
 bool initialPose = true;
 int poseCount = 0;
 
-- (void) sceneSetup {
+- (void) initScene {
     
     SCNScene *scene = [SCNScene scene];
     
@@ -39,7 +39,7 @@ int poseCount = 0;
     
     self.sceneView.scene = scene;
     self.sceneView.allowsCameraControl = true;
-    self.sceneView.backgroundColor = [UIColor blackColor];
+    self.sceneView.backgroundColor = [UIColor whiteColor];
     geometryNode = [SCNNode node];
 }
 
@@ -62,6 +62,8 @@ int poseCount = 0;
                                                                 bytesPerIndex:sizeof(int)];
     SCNGeometry *line = [SCNGeometry geometryWithSources:@[vertexSource]
                                                 elements:@[element]];
+    line.firstMaterial.diffuse.contents = [UIColor redColor];
+
     SCNNode *lineNode = [SCNNode nodeWithGeometry:line];;
     return lineNode;
 }

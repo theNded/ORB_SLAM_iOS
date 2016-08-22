@@ -15,25 +15,25 @@
 
 @interface ViewController : UIViewController
 
-@property (nonatomic, retain) IBOutlet UILabel* fpsLabel;
+// Labels
 @property (nonatomic, retain) IBOutlet UILabel* stateLabel;
+@property (nonatomic, retain) IBOutlet UILabel* fpsLabel;
 @property (nonatomic, retain) IBOutlet UILabel* nKFLabel;
 @property (nonatomic, retain) IBOutlet UILabel* nMPLabel;
-@property (nonatomic, retain) IBOutlet UILabel* logLabel;
+
+// Viewers
 @property (nonatomic, retain) IBOutlet UIImageView* imageView;
-@property (nonatomic, retain) IBOutlet UIImageView* depthView;
+@property (nonatomic, retain) IBOutlet MetalView*   metalView;
+@property (strong, nonatomic) IBOutlet SCNView*     sceneView;
+
+// Buttons
 @property (nonatomic, retain) IBOutlet UIButton* startBtn;
-@property (strong, nonatomic) IBOutlet UIButton *fileBtn;
 @property (nonatomic, retain) IBOutlet UIButton* resetBtn;
-@property (nonatomic, retain) IBOutlet UIButton* recordBtn;
-@property (nonatomic, retain) IBOutlet MetalView* metalView;
-@property (strong, nonatomic) IBOutlet SCNView *sceneView;
+
 @property (nonatomic, retain) Profiler* profiler;
 
-- (IBAction)StartSLAM:(id)sender;
-- (IBAction)ResetSLAM:(id)sender;
-- (IBAction)StartRecoding:(id)sender;
-- (IBAction)StartFromFile:(id)sender;
+- (IBAction)startSLAM:(id)sender;
+- (IBAction)resetSLAM:(id)sender;
 
 @end
 

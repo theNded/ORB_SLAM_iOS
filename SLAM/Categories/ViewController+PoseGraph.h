@@ -10,7 +10,7 @@
 
 @interface ViewController (PoseGraph)
 
-- (void) sceneSetup;
+- (void) initScene;
 - (void) addPose:(SCNVector3) point;
 - (void) resetSceneView;
 

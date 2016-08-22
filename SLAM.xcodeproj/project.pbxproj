@@ -59,7 +59,6 @@
 		7038E6ED1BD16F9800C5EEFC /* Transforms.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7038E6701BD16F9800C5EEFC /* Transforms.mm */; };
 		7038E6EE1BD16F9800C5EEFC /* Profiler.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7038E6731BD16F9800C5EEFC /* Profiler.mm */; };
 		7038E6EF1BD16F9800C5EEFC /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 7038E6751BD16F9800C5EEFC /* ViewController.mm */; };
-		707AC43F1BD175AC00B2D660 /* Structure.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 707AC43E1BD175AC00B2D660 /* Structure.framework */; };
 		707AC4411BD177D200B2D660 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 707AC4401BD177D200B2D660 /* CoreMedia.framework */; };
 		707AC4431BD177D900B2D660 /* CoreMotion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 707AC4421BD177D900B2D660 /* CoreMotion.framework */; };
 		707AC4451BD177E500B2D660 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 707AC4441BD177E500B2D660 /* OpenGLES.framework */; };
@@ -342,7 +341,6 @@
 		7038E6741BD16F9800C5EEFC /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		7038E6751BD16F9800C5EEFC /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		703A4D601BCC29E8004F6B5D /* SLAM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SLAM.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		707AC43E1BD175AC00B2D660 /* Structure.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Structure.framework; path = dependency/Structure.framework; sourceTree = "<group>"; };
 		707AC4401BD177D200B2D660 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		707AC4421BD177D900B2D660 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
 		707AC4441BD177E500B2D660 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -393,7 +391,6 @@
 				707AC4451BD177E500B2D660 /* OpenGLES.framework in Frameworks */,
 				707AC4431BD177D900B2D660 /* CoreMotion.framework in Frameworks */,
 				707AC4411BD177D200B2D660 /* CoreMedia.framework in Frameworks */,
-				707AC43F1BD175AC00B2D660 /* Structure.framework in Frameworks */,
 				70CFBA2C1BCFAA78002ABEC7 /* QuartzCore.framework in Frameworks */,
 				70CFBA2A1BCFAA6E002ABEC7 /* Metal.framework in Frameworks */,
 				70CFB8DD1BCE4B30002ABEC7 /* Accelerate.framework in Frameworks */,
@@ -828,8 +825,8 @@
 				7038E6751BD16F9800C5EEFC /* ViewController.mm */,
 				701B6EFB1BD3D4B4009E14DF /* Categories */,
 				7038E56F1BD16F9800C5EEFC /* Assets.xcassets */,
-				7038E5701BD16F9800C5EEFC /* iPad.storyboard */,
 				7038E5721BD16F9800C5EEFC /* Info.plist */,
+				7038E5701BD16F9800C5EEFC /* iPad.storyboard */,
 				7038E5731BD16F9800C5EEFC /* iPhone.storyboard */,
 				7038E5741BD16F9800C5EEFC /* Launch Screen.storyboard */,
 				7038E5751BD16F9800C5EEFC /* main.m */,
@@ -915,7 +912,6 @@
 				707AC4441BD177E500B2D660 /* OpenGLES.framework */,
 				707AC4421BD177D900B2D660 /* CoreMotion.framework */,
 				707AC4401BD177D200B2D660 /* CoreMedia.framework */,
-				707AC43E1BD175AC00B2D660 /* Structure.framework */,
 				70CFBA2B1BCFAA78002ABEC7 /* QuartzCore.framework */,
 				70CFBA291BCFAA6D002ABEC7 /* Metal.framework */,
 				70CFB8DC1BCE4B30002ABEC7 /* Accelerate.framework */,

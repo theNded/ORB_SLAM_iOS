@@ -24,8 +24,6 @@
 	<true/>
 	<key>UILaunchStoryboardName</key>
 	<string>Launch Screen</string>
-	<key>UIMainStoryboardFile~ipad</key>
-	<string>iPad</string>
 	<key>UIMainStoryboardFile~iphone</key>
 	<string>iPhone</string>
 	<key>UIRequiredDeviceCapabilities</key>

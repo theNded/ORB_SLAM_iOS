@@ -10,15 +10,11 @@
 
 @interface Profiler : NSObject
 
-@property int count;
-@property float totalTimeInterval;
-@property float lastInterval;
-@property NSDate* time;
+-(instancetype)init;
 
--(float) getAverageTime;
--(long) getLastTime;
--(void) start;
--(void) end;
--(id) init;
+-(void)start;
+-(void)end;
+
+-(float)getAverageTime;
 
 @end

@@ -11,7 +11,10 @@
 @interface ViewController (ORB_SLAM)
     
 - (void) initORB_SLAM;
-- (void) trackFrame:(cv::Mat&)colorImage andDepth:(cv::Mat&) depthImage;
+
+- (void) trackFrame:(cv::Mat&)colorImage
+           andDepth:(cv::Mat&)depthImage;
+
 - (int) getTrackingState;
 - (cv::Mat) getCurrentPose_R;
 - (cv::Mat) getCurrentPose_T;

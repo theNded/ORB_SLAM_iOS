@@ -15,98 +15,62 @@
 
 @implementation ViewController (RGBSource)
 
-using namespace cv;
-using namespace std;
-
-int imageCount = 0;
-dispatch_queue_t trackingQueue;
-Mat tempImage;
-char tempName[2000];
 bool isDone = true;
-AVCaptureSession *_avCaptureSession_AVFoundation;
-AVCaptureDevice *_videoDevice_AVFoundation;
-bool isRecording = false;
 
-- (void) RunFromFile {
-    [self.recordBtn setAlpha:0];
-    trackingQueue = dispatch_queue_create("tracking", DISPATCH_QUEUE_SERIAL);
-    
-    dispatch_async(trackingQueue, ^{
-        while (true) {
-            sprintf(tempName, "%04d.png", imageCount);
-            tempImage = [CVImageIO LoadCvMatWithName:tempName];
-            if (tempImage.empty()) {
-                break;
-            }
-            imageCount++;
-            Mat dummyDepth(cv::Size(320, 240), CV_32FC1, Scalar(-1.0f));
-            [self.profiler start];
-            [self trackFrame:tempImage andDepth:dummyDepth];
-            [self.profiler end];
-            [self showColorImage: tempImage];
-            [self updateInfoDisplay];
-            // This is used to control speed
-            [NSThread sleepForTimeInterval:0.05];
-        }
-    });
+cv::Mat            _tmp;
+AVCaptureSession*  _session;
+AVCaptureDevice*   _device;
+dispatch_queue_t   _trackingQueue;
+
+- (void) runFromAVFoundation {
+    [self setupCamera];
+    _trackingQueue = dispatch_queue_create("tracking", DISPATCH_QUEUE_SERIAL);
+    [_session startRunning];
 }
 
-- (void) RunFromAVFoundation {
-    [self setupColorCamera];
-    trackingQueue = dispatch_queue_create("tracking", DISPATCH_QUEUE_SERIAL);
-    [_avCaptureSession_AVFoundation startRunning];
-}
-
-- (void) TurnOnRecording {
-    isRecording = true;
-}
-
-- (void) setupColorCamera {
-    
+- (void) setupCamera {
     NSString *sessionPreset = AVCaptureSessionPreset640x480;
     
     // Set up Capture Session.
-    _avCaptureSession_AVFoundation = [[AVCaptureSession alloc] init];
-    [_avCaptureSession_AVFoundation beginConfiguration];
+    _session = [[AVCaptureSession alloc] init];
+    [_session beginConfiguration];
     
     // Set preset session size.
-    [_avCaptureSession_AVFoundation setSessionPreset:sessionPreset];
+    [_session setSessionPreset:sessionPreset];
     
     // Create a video device and input from that Device.  Add the input to the capture session.
-    _videoDevice_AVFoundation = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    if (_videoDevice_AVFoundation == nil)
+    _device = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    if (_device == nil)
         assert(0);
     
     // Configure Focus, Exposure, and White Balance
     NSError *error;
     
     // Use auto-exposure, and auto-white balance and set the focus to infinity.
-    if([_videoDevice_AVFoundation lockForConfiguration:&error])
-    {
+    if([_device lockForConfiguration:&error]) {
         // Allow exposure to change
-        if ([_videoDevice_AVFoundation isExposureModeSupported:AVCaptureExposureModeContinuousAutoExposure])
-            [_videoDevice_AVFoundation setExposureMode:AVCaptureExposureModeContinuousAutoExposure];
+        if ([_device isExposureModeSupported:AVCaptureExposureModeContinuousAutoExposure])
+            [_device setExposureMode:AVCaptureExposureModeContinuousAutoExposure];
         
         // Allow white balance to change
-        if ([_videoDevice_AVFoundation isWhiteBalanceModeSupported:AVCaptureWhiteBalanceModeContinuousAutoWhiteBalance])
-            [_videoDevice_AVFoundation setWhiteBalanceMode:AVCaptureWhiteBalanceModeContinuousAutoWhiteBalance];
+        if ([_device isWhiteBalanceModeSupported:AVCaptureWhiteBalanceModeContinuousAutoWhiteBalance])
+            [_device setWhiteBalanceMode:AVCaptureWhiteBalanceModeContinuousAutoWhiteBalance];
         
         // Set focus at the maximum position allowable (e.g. "near-infinity") to get the
         // best color/depth alignment.
-        [_videoDevice_AVFoundation setFocusModeLockedWithLensPosition:1.0f completionHandler:nil];
+        [_device setFocusModeLockedWithLensPosition:1.0f completionHandler:nil];
         
-        [_videoDevice_AVFoundation unlockForConfiguration];
+        [_device unlockForConfiguration];
     }
     
-    //  Add the device to the session.
-    AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:_videoDevice_AVFoundation error:&error];
+    AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:_device error:&error];
     if (error)
     {
         NSLog(@"Cannot initialize AVCaptureDeviceInput");
         assert(0);
     }
     
-    [_avCaptureSession_AVFoundation addInput:input]; // After this point, captureSession captureOptions are filled.
+    [_session addInput:input]; // After this point, captureSession captureOptions are filled.
     
     //  Create the output for the capture session.
     AVCaptureVideoDataOutput* dataOutput = [[AVCaptureVideoDataOutput alloc] init];
@@ -122,42 +86,35 @@ bool isRecording = false;
     // Set dispatch to be on the main thread so OpenGL can do things with the data
     [dataOutput setSampleBufferDelegate:self queue:dispatch_get_main_queue()];
     
-    [_avCaptureSession_AVFoundation addOutput:dataOutput];
+    [_session addOutput:dataOutput];
     
-    if([_videoDevice_AVFoundation lockForConfiguration:&error])
+    if([_device lockForConfiguration:&error])
     {
-        [_videoDevice_AVFoundation setActiveVideoMaxFrameDuration:CMTimeMake(1, 30)];
-        [_videoDevice_AVFoundation setActiveVideoMinFrameDuration:CMTimeMake(1, 30)];
-        [_videoDevice_AVFoundation unlockForConfiguration];
+        [_device setActiveVideoMaxFrameDuration:CMTimeMake(1, 30)];
+        [_device setActiveVideoMinFrameDuration:CMTimeMake(1, 30)];
+        [_device unlockForConfiguration];
     }
     
-    [_avCaptureSession_AVFoundation commitConfiguration];
+    [_session commitConfiguration];
 }
 
-- (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection
-{
+- (void)captureOutput:(AVCaptureOutput *)captureOutput
+didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
+       fromConnection:(AVCaptureConnection *)connection {
     if (isDone) {
         isDone = false;
-        tempImage = [ImageUtility cvMatFromCMSampleBufferRef: sampleBuffer];
+        _tmp = [ImageUtility cvMatFromCMSampleBufferRef: sampleBuffer];
         
-        dispatch_async(trackingQueue, ^{
-            Mat dummyDepth(cv::Size(320, 240), CV_32FC1, Scalar(-1.0f));
-            Mat colorInput;
-            resize(tempImage, colorInput, cv::Size(320, 240));
-            cvtColor(colorInput, colorInput, CV_BGRA2GRAY);
-            if (isRecording) {
-                //dispatch_async(recordingQueue, ^{
-                char name[2000];
-                sprintf(name, "%04d.jpg", imageCount);
-                imageCount++;
-                [CVImageIO SaveCvMat:colorInput withName:name];
-                //});
-            }
+        dispatch_async(_trackingQueue, ^{
+            cv::Mat dummyDepth;
+            cv::Mat colorInput;
+            cv::resize(_tmp, colorInput, cv::Size(320, 240));
+            cv::cvtColor(colorInput, colorInput, CV_BGRA2GRAY);
     
             [self.profiler start];
             [self trackFrame:colorInput andDepth:dummyDepth];
             [self.profiler end];
-            [self showColorImage: tempImage];
+            [self showColorImage:_tmp];
             [self updateInfoDisplay];
             isDone = true;
         });

@@ -12,8 +12,6 @@
 
 - (void) initProfiler;
 - (void) updateInfoDisplay;
-- (void) showDepthImage:(cv::Mat&)image;
 - (void) showColorImage:(cv::Mat&)image;
-- (void) displayLogInfo:(NSString*) str;
 
 @end

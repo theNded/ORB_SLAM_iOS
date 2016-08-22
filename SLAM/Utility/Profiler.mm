@@ -7,37 +7,46 @@
 //
 #import "Profiler.h"
 
+@interface Profiler ()
+
+@property int   frameCount;
+@property float totalTimeInterval;
+@property float lastTimeInterval;
+@property NSDate* time;
+
+@end
+
 @implementation Profiler
 
--(id) init {
+-(instancetype)init {
     self = [super init];
     if (self) {
-        _count = 0;
+        _frameCount = 0;
         _totalTimeInterval = 0;
-        _lastInterval = -1;
+        _lastTimeInterval = -1;
     }
     return self;
 }
 
--(void) start {
+-(void)start {
     _time = [NSDate date];
 }
 
--(void) end {
-    _count++;
-    _lastInterval = -[_time timeIntervalSinceNow];
-    _totalTimeInterval += _lastInterval;
+-(void)end {
+    _frameCount ++;
+    _lastTimeInterval   = -[_time timeIntervalSinceNow];
+    _totalTimeInterval += _lastTimeInterval;
 }
 
--(long) getLastTime {
-    return _lastInterval;
+-(long)getLastTime {
+    return _lastTimeInterval;
 }
 
--(float) getAverageTime {
-    if (_count == 0)
+-(float)getAverageTime {
+    if (_frameCount == 0)
         return -1;
     else
-        return static_cast<float>(_totalTimeInterval/static_cast<float>(_count));
+        return static_cast<float>(_totalTimeInterval/static_cast<float>(_frameCount));
 }
 
 @end

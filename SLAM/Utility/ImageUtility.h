@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <Structure/Structure.h>
+//#import <Structure/Structure.h>
 #import <opencv2/highgui/cap_ios.h>
 
 @interface ImageUtility : NSObject

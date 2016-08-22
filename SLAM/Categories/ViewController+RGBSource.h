@@ -9,10 +9,8 @@
 #import "ViewController.h"
 #import <AVFoundation/AVFoundation.h>
 
-@interface ViewController (RGBSource)<AVCaptureVideoDataOutputSampleBufferDelegate>
+@interface ViewController (RGBSource) <AVCaptureVideoDataOutputSampleBufferDelegate>
 
-- (void) RunFromFile;
-- (void) RunFromAVFoundation;
-- (void) TurnOnRecording;
+- (void) runFromAVFoundation;
 
 @end
