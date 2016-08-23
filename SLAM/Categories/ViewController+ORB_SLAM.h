@@ -21,7 +21,12 @@
 - (cv::Mat) getCurrentPose_T;
 - (int) getnKF;
 - (int) getnMP;
+
 - (std::vector<ORB_SLAM::MapPoint *>) getMapPoints;
+- (std::vector<cv::KeyPoint>) getKeyPoints;
+- (std::vector<ORB_SLAM::MapPoint*>) getMatchedPoints;
+- (std::vector<bool>) getOutliers;
+
 - (void) requestSLAMReset;
 
 @end

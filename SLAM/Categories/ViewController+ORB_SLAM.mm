@@ -108,6 +108,18 @@ bool isVocabLoaded = false;
     return _World->GetAllMapPoints();
 }
 
+- (std::vector<cv::KeyPoint>) getKeyPoints {
+    return _Tracker->mCurrentFrame.mvKeys;
+}
+
+- (std::vector<ORB_SLAM::MapPoint*>) getMatchedPoints {
+    return _Tracker->mCurrentFrame.mvpMapPoints;
+}
+
+- (std::vector<bool>) getOutliers {
+    return _Tracker->mCurrentFrame.mvbOutlier;
+}
+
 - (int) getnMP {
     return _World->MapPointsInMap();
 }

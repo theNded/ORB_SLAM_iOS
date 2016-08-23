@@ -71,6 +71,30 @@ using namespace cv;
 }
 
 - (void) showColorImage:(Mat&)image {
+    if ([self getTrackingState] == 3) {
+        int mnTracked=0;
+        const float r = 5;
+        std::vector<ORB_SLAM::MapPoint*> vMatchedMapPoints = [self getMatchedPoints];
+        std::vector<cv::KeyPoint> vCurrentKeys = [self getKeyPoints];
+        std::vector<bool> mvbOutliers = [self getOutliers];
+        for(unsigned int i=0;i<vMatchedMapPoints.size();i++)
+        {
+            if(vMatchedMapPoints[i] || mvbOutliers[i])
+            {
+                cv::Point2f pt1,pt2;
+                pt1.x = 2 * vCurrentKeys[i].pt.x-r;
+                pt1.y = 2 * vCurrentKeys[i].pt.y-r;
+                pt2.x = 2 * vCurrentKeys[i].pt.x+r;
+                pt2.y = 2 * vCurrentKeys[i].pt.y+r;
+                if(!mvbOutliers[i])
+                {
+                    cv::rectangle(image,pt1,pt2,cv::Scalar(0,255,0));
+                    cv::circle(image,2 * vCurrentKeys[i].pt,2,cv::Scalar(0,255,0),-1);
+                    mnTracked++;
+                }
+            }
+        }
+    }
     UIImage* colorImage = [ImageUtility UIImageFromCVMat:image];
     dispatch_async(dispatch_get_main_queue(), ^{
         self.imageView.image = colorImage;;
