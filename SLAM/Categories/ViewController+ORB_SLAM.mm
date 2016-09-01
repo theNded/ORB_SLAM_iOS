@@ -42,13 +42,13 @@ bool isVocabLoaded = false;
                                                               ofType:@"txt"]
                               cStringUsingEncoding:[NSString defaultCStringEncoding]];
         _Vocabulary = new ORB_SLAM::ORBVocabulary();
-        if (! isVocabLoaded) {
+        /*if (! isVocabLoaded) {
             isVocabLoaded = _Vocabulary->loadFromTextFile(ORBvoc);
             if(! isVocabLoaded) {
                 std::cerr << "Failed to load vocabulary" << std::endl;
                 exit(-1);
             }
-        }
+        }*/
         _Database = new ORB_SLAM::KeyFrameDatabase(*_Vocabulary);
         
         // Execute when the thread is over

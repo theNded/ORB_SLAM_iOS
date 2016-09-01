@@ -16,8 +16,7 @@
 		701ECDDF1BD78ED300FA3E7D /* ViewController+RGBSource.mm in Sources */ = {isa = PBXBuildFile; fileRef = 701ECDDE1BD78ED300FA3E7D /* ViewController+RGBSource.mm */; };
 		7038E6761BD16F9800C5EEFC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7038E56E1BD16F9800C5EEFC /* AppDelegate.m */; };
 		7038E6771BD16F9800C5EEFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7038E56F1BD16F9800C5EEFC /* Assets.xcassets */; };
-		7038E6781BD16F9800C5EEFC /* iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7038E5701BD16F9800C5EEFC /* iPad.storyboard */; };
-		7038E67A1BD16F9800C5EEFC /* iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7038E5731BD16F9800C5EEFC /* iPhone.storyboard */; };
+		7038E67A1BD16F9800C5EEFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7038E5731BD16F9800C5EEFC /* Main.storyboard */; };
 		7038E67B1BD16F9800C5EEFC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7038E5741BD16F9800C5EEFC /* LaunchScreen.storyboard */; };
 		7038E67C1BD16F9800C5EEFC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7038E5751BD16F9800C5EEFC /* main.m */; };
 		7038E67D1BD16F9800C5EEFC /* Converter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7038E5771BD16F9800C5EEFC /* Converter.cpp */; };
@@ -102,9 +101,8 @@
 		7038E56D1BD16F9800C5EEFC /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7038E56E1BD16F9800C5EEFC /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		7038E56F1BD16F9800C5EEFC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		7038E5711BD16F9800C5EEFC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/iPad.storyboard; sourceTree = "<group>"; };
 		7038E5721BD16F9800C5EEFC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7038E5731BD16F9800C5EEFC /* iPhone.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = iPhone.storyboard; sourceTree = "<group>"; };
+		7038E5731BD16F9800C5EEFC /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		7038E5741BD16F9800C5EEFC /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7038E5751BD16F9800C5EEFC /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7038E5771BD16F9800C5EEFC /* Converter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Converter.cpp; sourceTree = "<group>"; };
@@ -823,8 +821,7 @@
 				701B6EFB1BD3D4B4009E14DF /* Categories */,
 				7038E56F1BD16F9800C5EEFC /* Assets.xcassets */,
 				7038E5721BD16F9800C5EEFC /* Info.plist */,
-				7038E5701BD16F9800C5EEFC /* iPad.storyboard */,
-				7038E5731BD16F9800C5EEFC /* iPhone.storyboard */,
+				7038E5731BD16F9800C5EEFC /* Main.storyboard */,
 				7038E5741BD16F9800C5EEFC /* LaunchScreen.storyboard */,
 				7038E5751BD16F9800C5EEFC /* main.m */,
 			);
@@ -992,11 +989,10 @@
 				7038E6981BD16F9800C5EEFC /* FindBLAS.cmake in Resources */,
 				70E7883E1BD6FF6A006949CA /* CMakeLists.txt in Resources */,
 				7038E6771BD16F9800C5EEFC /* Assets.xcassets in Resources */,
-				7038E6781BD16F9800C5EEFC /* iPad.storyboard in Resources */,
 				7038E67E1BD16F9800C5EEFC /* ORBvoc.txt in Resources */,
 				7038E6D51BD16F9800C5EEFC /* dquat2mat.wxm in Resources */,
 				7038E6EC1BD16F9800C5EEFC /* teapot.obj in Resources */,
-				7038E67A1BD16F9800C5EEFC /* iPhone.storyboard in Resources */,
+				7038E67A1BD16F9800C5EEFC /* Main.storyboard in Resources */,
 				7038E67F1BD16F9800C5EEFC /* Settings.yaml in Resources */,
 				7038E6E91BD16F9800C5EEFC /* plane.obj in Resources */,
 				7038E6E61BD16F9800C5EEFC /* box.obj.mtl in Resources */,
@@ -1103,17 +1099,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		7038E5701BD16F9800C5EEFC /* iPad.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				7038E5711BD16F9800C5EEFC /* Base */,
-			);
-			name = iPad.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		703A4D8B1BCC29E8004F6B5D /* Debug */ = {

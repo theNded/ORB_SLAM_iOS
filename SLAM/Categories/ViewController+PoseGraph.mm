@@ -35,7 +35,7 @@ bool initialPose = true;
     
     SCNNode *cameraNode = [SCNNode node];
     cameraNode.camera = [SCNCamera camera];
-    cameraNode.position = SCNVector3Make(0, 0, 3);
+    cameraNode.position = SCNVector3Make(0, 0, 6);
     [scene.rootNode addChildNode:cameraNode];
     
     self.sceneView.scene = scene;
@@ -55,7 +55,7 @@ bool initialPose = true;
     cv::Mat Rwc = R.t();
     cv::Mat Twc = -R.t() * T;
 
-    float d = 0.04;
+    float d = 0.08;
     cv::Mat_<float> o  = Rwc * (cv::Mat_<float>(3,1) <<  0,     0,      0) + Twc;
     cv::Mat_<float> p1 = Rwc * (cv::Mat_<float>(3,1) <<  d, d *0.8, d*0.5) + Twc;
     cv::Mat_<float> p2 = Rwc * (cv::Mat_<float>(3,1) <<  d, -d*0.8, d*0.5) + Twc;

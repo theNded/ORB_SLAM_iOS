@@ -56,7 +56,7 @@ using namespace cv;
 
                 [self addCameraWithR:R andT:T];
                 [self addMapPoints: [self getMapPoints]];
-                //[self drawObjectWith:R andT:T];
+                [self drawObjectWith:R andT:T];
 
                 break;
             }

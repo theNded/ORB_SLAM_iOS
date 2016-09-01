@@ -43,9 +43,9 @@ static float DegToRad(float deg)
     if (baseGroup)
     {
         _vertexBuffer = [_renderer newBufferWithBytes:baseGroup->vertices
-                                                       length:sizeof(Vertex) * baseGroup->vertexCount];
+                                               length:sizeof(Vertex) * baseGroup->vertexCount];
         _indexBuffer = [_renderer newBufferWithBytes:baseGroup->indices
-                                                      length:sizeof(IndexType) * baseGroup->indexCount];
+                                              length:sizeof(IndexType) * baseGroup->indexCount];
     }
 }
 
@@ -72,10 +72,8 @@ static float DegToRad(float deg)
     //simd::float4 r3 = { R.at<float>(2,0), R.at<float>(2,1), R.at<float>(2,2), 0 };
     //simd::float4 r4 = { -T.at<float>(0), T.at<float>(1), T.at<float>(2), 1 };
     
-    simd::float4x4 poseMatrix = {r1, r2, r3, r4};
-    simd::float4x4 modelMatrix = poseMatrix*matrix_uniform_scale(0.3);
-    
-    simd::float4x4 viewMatrix = Identity();
+    simd::float4x4 modelMatrix = matrix_uniform_scale(0.3);
+    simd::float4x4 viewMatrix = {r1, r2, r3, r4};
     //viewMatrix.columns[3].z = -0.5; // translate camera back along Z axis
     
     const float near = 0.02;
@@ -104,7 +102,10 @@ static float DegToRad(float deg)
     
     [_renderer startFrame];
     
-    [_renderer drawTrianglesWithInterleavedBuffer:_vertexBuffer indexBuffer:_indexBuffer uniformBuffer:_uniformBuffer indexCount:[_indexBuffer length]/sizeof(IndexType)];
+    [_renderer drawTrianglesWithInterleavedBuffer:_vertexBuffer
+                                      indexBuffer:_indexBuffer
+                                    uniformBuffer:_uniformBuffer
+                                       indexCount:[_indexBuffer length]/sizeof(IndexType)];
     
     [_renderer endFrame];
 }
