@@ -20,7 +20,6 @@
 		7038E67B1BD16F9800C5EEFC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7038E5741BD16F9800C5EEFC /* LaunchScreen.storyboard */; };
 		7038E67C1BD16F9800C5EEFC /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7038E5751BD16F9800C5EEFC /* main.m */; };
 		7038E67D1BD16F9800C5EEFC /* Converter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7038E5771BD16F9800C5EEFC /* Converter.cpp */; };
-		7038E67E1BD16F9800C5EEFC /* ORBvoc.txt in Resources */ = {isa = PBXBuildFile; fileRef = 7038E57A1BD16F9800C5EEFC /* ORBvoc.txt */; };
 		7038E67F1BD16F9800C5EEFC /* Settings.yaml in Resources */ = {isa = PBXBuildFile; fileRef = 7038E57B1BD16F9800C5EEFC /* Settings.yaml */; };
 		7038E6801BD16F9800C5EEFC /* Frame.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7038E57C1BD16F9800C5EEFC /* Frame.cpp */; };
 		7038E6811BD16F9800C5EEFC /* Initializer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 7038E57E1BD16F9800C5EEFC /* Initializer.cpp */; };
@@ -81,6 +80,7 @@
 		70E7884A1BD701A2006949CA /* libCCOLAMD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70E788451BD701A2006949CA /* libCCOLAMD.a */; };
 		70E7884B1BD701A2006949CA /* libcholmod.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70E788461BD701A2006949CA /* libcholmod.a */; };
 		70E7884C1BD701A2006949CA /* libCOLAMD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70E788471BD701A2006949CA /* libCOLAMD.a */; };
+		B50BCB6B1D7BF22500BB223E /* ORBvoc.binary in Resources */ = {isa = PBXBuildFile; fileRef = B50BCB6A1D7BF22500BB223E /* ORBvoc.binary */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -107,7 +107,6 @@
 		7038E5751BD16F9800C5EEFC /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7038E5771BD16F9800C5EEFC /* Converter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Converter.cpp; sourceTree = "<group>"; };
 		7038E5781BD16F9800C5EEFC /* Converter.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Converter.hpp; sourceTree = "<group>"; };
-		7038E57A1BD16F9800C5EEFC /* ORBvoc.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ORBvoc.txt; sourceTree = "<group>"; };
 		7038E57B1BD16F9800C5EEFC /* Settings.yaml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Settings.yaml; sourceTree = "<group>"; };
 		7038E57C1BD16F9800C5EEFC /* Frame.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Frame.cpp; sourceTree = "<group>"; };
 		7038E57D1BD16F9800C5EEFC /* Frame.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Frame.hpp; sourceTree = "<group>"; };
@@ -364,6 +363,7 @@
 		70E788471BD701A2006949CA /* libCOLAMD.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libCOLAMD.a; path = dependency/cholmod/libs/libCOLAMD.a; sourceTree = "<group>"; };
 		80469BD2208B0D00566AE01A /* libPods-SLAM.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SLAM.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4F3401FC3BF296F464E94B9 /* Pods-SLAM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLAM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SLAM/Pods-SLAM.debug.xcconfig"; sourceTree = "<group>"; };
+		B50BCB6A1D7BF22500BB223E /* ORBvoc.binary */ = {isa = PBXFileReference; lastKnownFileType = file; path = ORBvoc.binary; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -462,7 +462,7 @@
 		7038E5791BD16F9800C5EEFC /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				7038E57A1BD16F9800C5EEFC /* ORBvoc.txt */,
+				B50BCB6A1D7BF22500BB223E /* ORBvoc.binary */,
 				7038E57B1BD16F9800C5EEFC /* Settings.yaml */,
 			);
 			path = Data;
@@ -984,12 +984,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B50BCB6B1D7BF22500BB223E /* ORBvoc.binary in Resources */,
 				7038E67B1BD16F9800C5EEFC /* LaunchScreen.storyboard in Resources */,
 				7038E6E51BD16F9800C5EEFC /* box.obj in Resources */,
 				7038E6981BD16F9800C5EEFC /* FindBLAS.cmake in Resources */,
 				70E7883E1BD6FF6A006949CA /* CMakeLists.txt in Resources */,
 				7038E6771BD16F9800C5EEFC /* Assets.xcassets in Resources */,
-				7038E67E1BD16F9800C5EEFC /* ORBvoc.txt in Resources */,
 				7038E6D51BD16F9800C5EEFC /* dquat2mat.wxm in Resources */,
 				7038E6EC1BD16F9800C5EEFC /* teapot.obj in Resources */,
 				7038E67A1BD16F9800C5EEFC /* Main.storyboard in Resources */,

@@ -39,16 +39,16 @@ bool isVocabLoaded = false;
     // New thread
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         const char *ORBvoc = [[[NSBundle mainBundle] pathForResource:@"ORBvoc"
-                                                              ofType:@"txt"]
+                                                              ofType:@"binary"]
                               cStringUsingEncoding:[NSString defaultCStringEncoding]];
         _Vocabulary = new ORB_SLAM::ORBVocabulary();
-        /*if (! isVocabLoaded) {
-            isVocabLoaded = _Vocabulary->loadFromTextFile(ORBvoc);
+        if (! isVocabLoaded) {
+            isVocabLoaded = _Vocabulary->loadFromBinaryFile(ORBvoc);
             if(! isVocabLoaded) {
                 std::cerr << "Failed to load vocabulary" << std::endl;
                 exit(-1);
             }
-        }*/
+        }
         _Database = new ORB_SLAM::KeyFrameDatabase(*_Vocabulary);
         
         // Execute when the thread is over
