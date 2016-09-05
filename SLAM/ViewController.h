@@ -14,6 +14,9 @@
 #import "MetalView.h"
 #import "Profiler.h"
 
+#include "ORB_SLAM/Tracking.hpp"
+
+typedef ORB_SLAM::Tracking::eTrackingState TrackingState;
 
 @interface ViewController : UIViewController
 

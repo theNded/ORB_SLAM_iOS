@@ -806,8 +806,8 @@
 			children = (
 				7038E6721BD16F9800C5EEFC /* Profiler.h */,
 				7038E6731BD16F9800C5EEFC /* Profiler.mm */,
-				701B6EEC1BD3D020009E14DF /* ImageUtility.h */,
 				701B6EED1BD3D020009E14DF /* ImageUtility.mm */,
+				701B6EEC1BD3D020009E14DF /* ImageUtility.h */,
 				70DD4C601BD59059001A6A68 /* CVImageIO.h */,
 				70DD4C611BD59059001A6A68 /* CVImageIO.mm */,
 			);

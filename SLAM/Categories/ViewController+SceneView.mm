@@ -11,9 +11,17 @@
 @implementation ViewController (SceneView)
 
 SCNNode*   _trajectoryNode;
-SCNNode*   _poseNode;
+SCNNode*   _posesNode;
+SCNNode*   _currentPoseNode;
 SCNNode*   _mapNode;
-SCNVector3 _prevPose;
+
+SCNVector3 _prevPosition;
+
+SCNVector3 _vo;
+SCNVector3 _vp1;
+SCNVector3 _vp2;
+SCNVector3 _vp3;
+SCNVector3 _vp4;
 
 bool initialPose = true;
 
@@ -42,38 +50,48 @@ bool initialPose = true;
     self.sceneView.allowsCameraControl = true;
     self.sceneView.backgroundColor = [UIColor whiteColor];
     
-    _trajectoryNode = [SCNNode node];
-    _poseNode       = [SCNNode node];
-    _mapNode        = [SCNNode node];
+    _trajectoryNode  = [SCNNode node];
+    _posesNode       = [SCNNode node];
+    _mapNode         = [SCNNode node];
     [scene.rootNode addChildNode:_trajectoryNode];
-    [scene.rootNode addChildNode:_poseNode];
+    [scene.rootNode addChildNode:_posesNode];
     [scene.rootNode addChildNode:_mapNode];
 }
 
 - (void) updateSceneViewWithR:(cv::Mat &)R andT:(cv::Mat &)T {
-    //cv::Mat_<float> origin = - R.t() * T;
+    // Late updating
+    if (! initialPose)
+        [_posesNode addChildNode:[self makePyramidWithO:_vo andP1:_vp1 P2:_vp2 P3:_vp3 P4:_vp4
+                                                ofColor:[UIColor blueColor]]];
+    
     cv::Mat Rwc = R.t();
     cv::Mat Twc = -R.t() * T;
 
-    float d = 0.08;
+    const float d = 0.08;
     cv::Mat_<float> o  = Rwc * (cv::Mat_<float>(3,1) <<  0,     0,      0) + Twc;
     cv::Mat_<float> p1 = Rwc * (cv::Mat_<float>(3,1) <<  d, d *0.8, d*0.5) + Twc;
     cv::Mat_<float> p2 = Rwc * (cv::Mat_<float>(3,1) <<  d, -d*0.8, d*0.5) + Twc;
     cv::Mat_<float> p3 = Rwc * (cv::Mat_<float>(3,1) << -d, -d*0.8, d*0.5) + Twc;
     cv::Mat_<float> p4 = Rwc * (cv::Mat_<float>(3,1) << -d, d *0.8, d*0.5) + Twc;
     
-    SCNVector3 vo  = SCNVector3Make(o(0),  -o(1),  -o(2));
-    SCNVector3 vp1 = SCNVector3Make(p1(0), -p1(1), -p1(2));
-    SCNVector3 vp2 = SCNVector3Make(p2(0), -p2(1), -p2(2));
-    SCNVector3 vp3 = SCNVector3Make(p3(0), -p3(1), -p3(2));
-    SCNVector3 vp4 = SCNVector3Make(p4(0), -p4(1), -p4(2));
+    _vo  = SCNVector3Make(o(0),  -o(1),  -o(2));
+    _vp1 = SCNVector3Make(p1(0), -p1(1), -p1(2));
+    _vp2 = SCNVector3Make(p2(0), -p2(1), -p2(2));
+    _vp3 = SCNVector3Make(p3(0), -p3(1), -p3(2));
+    _vp4 = SCNVector3Make(p4(0), -p4(1), -p4(2));
     
+    // update trajectory
     if (!initialPose)
-        [_trajectoryNode addChildNode:[self makeLineWithX:_prevPose andY:vo]];
+        [_trajectoryNode addChildNode:[self makeLineWithX:_prevPosition andY:_vo]];
     else
         initialPose = false;
-    [_poseNode addChildNode:[self makePyramidWithO:vo andP1:vp1 P2:vp2 P3:vp3 P4:vp4]];
-    _prevPose = vo;
+
+    // draw current pose
+    [_currentPoseNode removeFromParentNode];
+    _currentPoseNode = [self makePyramidWithO:_vo andP1:_vp1 P2:_vp2 P3:_vp3 P4:_vp4
+                                      ofColor:[UIColor redColor]];
+    [self.sceneView.scene.rootNode addChildNode:_currentPoseNode];
+    _prevPosition = _vo;
 }
 
 - (void) updateSceneViewWithMapPoints:(std::vector<ORB_SLAM::MapPoint *>&) points {
@@ -118,7 +136,8 @@ bool initialPose = true;
                         andP1:(SCNVector3)p1
                            P2:(SCNVector3)p2
                            P3:(SCNVector3)p3
-                           P4:(SCNVector3)p4 {
+                           P4:(SCNVector3)p4
+                      ofColor:(UIColor*)color {
     SCNVector3 vertices[] = {o, p1, p2, p3, p4};
     int indices[] = {0, 1, 0, 2, 0, 3, 0, 4, 1, 2, 2, 3, 3, 4, 4, 1};
     SCNGeometrySource *source   = [SCNGeometrySource geometrySourceWithVertices:vertices count:5];
@@ -128,7 +147,7 @@ bool initialPose = true;
                                                                 bytesPerIndex:sizeof(int)];
     SCNGeometry *pyramid        = [SCNGeometry geometryWithSources:@[source]
                                                             elements:@[element]];
-    pyramid.firstMaterial.diffuse.contents = [UIColor blueColor];
+    pyramid.firstMaterial.diffuse.contents = color;
     SCNNode *pyramidNode = [SCNNode nodeWithGeometry:pyramid];
     return pyramidNode;
 }
@@ -138,18 +157,18 @@ bool initialPose = true;
     for (SCNNode *node in [_trajectoryNode childNodes]) {
         [node removeFromParentNode];
     }
-    for (SCNNode *node in [_poseNode childNodes]) {
+    for (SCNNode *node in [_posesNode childNodes]) {
         [node removeFromParentNode];
     }
     [_mapNode removeFromParentNode];
     [_trajectoryNode removeFromParentNode];
-    [_poseNode removeFromParentNode];
+    [_posesNode removeFromParentNode];
 
     _trajectoryNode = [SCNNode node];
-    _poseNode       = [SCNNode node];
+    _posesNode       = [SCNNode node];
     _mapNode        = [SCNNode node];
     [self.sceneView.scene.rootNode addChildNode:_trajectoryNode];
-    [self.sceneView.scene.rootNode addChildNode:_poseNode];
+    [self.sceneView.scene.rootNode addChildNode:_posesNode];
     [self.sceneView.scene.rootNode addChildNode:_mapNode];
 }
 

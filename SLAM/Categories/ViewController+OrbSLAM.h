@@ -8,8 +8,6 @@
 
 #import "ViewController.h"
 
-#include "../ORB_SLAM/MapPoint.hpp"
-
 @interface ViewController (OrbSLAM)
     
 - (void) initOrbSLAM;
@@ -19,15 +17,18 @@
            andDepth:(cv::Mat&)depthImage;
 
 - (int) getTrackingState;
-- (cv::Mat) getCurrentPose_R;
-- (cv::Mat) getCurrentPose_T;
 - (int) getnKF;
 - (int) getnMP;
 
-- (std::vector<ORB_SLAM::MapPoint *>) getMapPoints;
-- (std::vector<cv::KeyPoint>) getKeyPoints;
-- (std::vector<ORB_SLAM::MapPoint*>) getMatchedPoints;
-- (std::vector<bool>) getOutliers;
+- (cv::Mat) getCurrentPose_R;
+- (cv::Mat) getCurrentPose_T;
+
+- (std::vector<ORB_SLAM::MapPoint *>  ) getMapPoints;
+- (std::vector<ORB_SLAM::MapPoint *> *) getMatchedMapPoints;
+- (std::vector<cv::KeyPoint> *) getCurrentKeyPoints;
+- (std::vector<cv::KeyPoint> *) getInitKeyPoints;
+- (std::vector<bool> *) getOutliers;
+- (std::vector<int> *)  getMatches;
 
 - (void) requestSLAMReset;
 

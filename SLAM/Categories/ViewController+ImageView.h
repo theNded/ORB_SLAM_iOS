@@ -16,9 +16,14 @@
 
 - (void) initImageView;
 - (void) updateImageViewWithImage:(cv::Mat &)image
-                 MatchedMapPoints:(std::vector<ORB_SLAM::MapPoint*>&) matchedMapPoints
-                 CurrentKeyPoints:(std::vector<cv::KeyPoint>&) currentKeyPoints
-                      andOutliers:(std::vector<bool>&) outliers;
+                    InitKeyPoints:(std::vector<cv::KeyPoint> *)initKeyPoints
+                 CurrentKeyPoints:(std::vector<cv::KeyPoint> *)currentKeyPoints
+                       andMatches:(std::vector<int> *)matches;
+
+- (void) updateImageViewWithImage:(cv::Mat &)image
+                 MatchedMapPoints:(std::vector<ORB_SLAM::MapPoint*> *) matchedMapPoints
+                 CurrentKeyPoints:(std::vector<cv::KeyPoint> *) currentKeyPoints
+                      andOutliers:(std::vector<bool> *) outliers;
 
 
 @end
