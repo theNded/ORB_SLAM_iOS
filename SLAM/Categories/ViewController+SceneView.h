@@ -9,11 +9,12 @@
 #import "ViewController.h"
 #include "../ORB_SLAM/MapPoint.hpp"
 
-@interface ViewController (PoseGraph)
+@interface ViewController (SceneView)
 
-- (void) initScene;
-- (void) addCameraWithR:(cv::Mat &)R andT:(cv::Mat &)T;
-- (void) addMapPoints:(std::vector<ORB_SLAM::MapPoint *>) points;
+- (void) initSceneView;
+- (void) updateSceneViewWithR:(cv::Mat &)R andT:(cv::Mat &)T;
+- (void) updateSceneViewWithMapPoints:(std::vector<ORB_SLAM::MapPoint *>&) points;
+
 - (void) resetSceneView;
 
 @end

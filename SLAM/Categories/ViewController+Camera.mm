@@ -6,25 +6,84 @@
 //  Copyright © 2015 Xin Sun. All rights reserved.
 //
 
-#import "ViewController+RGBSource.h"
-#import "ViewController+ORB_SLAM.h"
-#import "ViewController+InfoDisplay.h"
-#import "CVImageIO.h"
-#import "ImageUtility.h"
+#import "ViewController+Camera.h"
+
 #include <iostream>
 
-@implementation ViewController (RGBSource)
+#import "ImageUtility.h"
+
+#import "ViewController+OrbSLAM.h"
+#import "ViewController+InfoLabels.h"
+#import "ViewController+ImageView.h"
+#import "ViewController+MetalView.h"
+#import "ViewController+SceneView.h"
+
+@implementation ViewController (Camera)
 
 cv::Mat            _inputImage;
 AVCaptureSession*  _session;
 AVCaptureDevice*   _device;
 dispatch_queue_t   _trackingQueue;
+// A not strict lock
 bool               _isTracking = false;
 
-- (void) runFromAVFoundation {
+- (void) initCamera {
     [self setupCamera];
+}
+
+- (void) startCameraCapturing {
     _trackingQueue = dispatch_queue_create("tracking", DISPATCH_QUEUE_SERIAL);
     [_session startRunning];
+}
+
+// MAIN LOOP
+- (void)captureOutput:(AVCaptureOutput *)captureOutput
+didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
+       fromConnection:(AVCaptureConnection *)connection {
+    if (! _isTracking) {
+        _isTracking = true;
+        _inputImage = [ImageUtility cvMatFromCMSampleBufferRef: sampleBuffer];
+        
+        dispatch_async(_trackingQueue, ^{
+            cv::Mat dummyDepth;
+            cv::Mat color;
+            cv::resize(_inputImage, color, cv::Size(320, 240));
+            cv::cvtColor(color, color, CV_BGRA2GRAY);
+            
+            // Update SLAM (model)
+            [self.profiler start];
+            [self trackFrame:color andDepth:dummyDepth];
+            [self.profiler end];
+            
+            // OrbSLAM condition variables
+            cv::Mat R = [self getCurrentPose_R];
+            cv::Mat T = [self getCurrentPose_T];
+            
+            int trackingState                                  = [self getTrackingState];
+            int keyFrameCount                                  = [self getnKF];
+            int mapPointCount                                  = [self getnMP];
+            std::vector<ORB_SLAM::MapPoint *> mapPoints        = [self getMapPoints];
+            std::vector<ORB_SLAM::MapPoint*>  matchedMapPoints = [self getMatchedPoints];
+            std::vector<cv::KeyPoint> currentKeyPoints         = [self getKeyPoints];
+            std::vector<bool> outliers                         = [self getOutliers];
+            
+            // Update Views
+            [self updateInfoLabelsWithState:trackingState
+                              KeyFrameCount:keyFrameCount
+                           andMapPointCount:mapPointCount];
+            [self updateImageViewWithImage:_inputImage
+                          MatchedMapPoints:matchedMapPoints
+                          CurrentKeyPoints:currentKeyPoints
+                               andOutliers:outliers];
+            if (trackingState == 3) {
+            [self updateMetalViewWithR:R andT:T];
+            [self updateSceneViewWithR:R andT:T];
+            [self updateSceneViewWithMapPoints:mapPoints];
+            }
+
+            _isTracking = false;
+        });
+    }
 }
 
 - (void) setupCamera {
@@ -63,8 +122,7 @@ bool               _isTracking = false;
     }
     
     AVCaptureDeviceInput *input = [AVCaptureDeviceInput deviceInputWithDevice:_device error:&error];
-    if (error)
-    {
+    if (error) {
         NSLog(@"Cannot initialize AVCaptureDeviceInput");
         assert(0);
     }
@@ -87,41 +145,13 @@ bool               _isTracking = false;
     
     [_session addOutput:dataOutput];
     
-    if([_device lockForConfiguration:&error])
-    {
+    if([_device lockForConfiguration:&error]) {
         [_device setActiveVideoMaxFrameDuration:CMTimeMake(1, 30)];
         [_device setActiveVideoMinFrameDuration:CMTimeMake(1, 30)];
         [_device unlockForConfiguration];
     }
     
     [_session commitConfiguration];
-}
-
-// Main loop here
-- (void)captureOutput:(AVCaptureOutput *)captureOutput
-didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
-       fromConnection:(AVCaptureConnection *)connection {
-    if (! _isTracking) {
-        _isTracking = true;
-        _inputImage = [ImageUtility cvMatFromCMSampleBufferRef: sampleBuffer];
-        
-        dispatch_async(_trackingQueue, ^{
-            cv::Mat dummyDepth;
-            cv::Mat color;
-            cv::resize(_inputImage, color, cv::Size(320, 240));
-            cv::cvtColor(color, color, CV_BGRA2GRAY);
-    
-            // ORB
-            [self.profiler start];
-            [self trackFrame:color andDepth:dummyDepth];
-            [self.profiler end];
-            
-            // Info
-            [self showColorImage:_inputImage];
-            [self updateInfoDisplay];
-            _isTracking = false;
-        });
-    }
 }
 
 @end

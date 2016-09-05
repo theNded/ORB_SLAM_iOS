@@ -6,12 +6,14 @@
 //  Copyright © 2015 Xin Sun. All rights reserved.
 //
 
-#import "ViewController+ORB_SLAM.h"
-#import "ViewController+InfoDisplay.h"
-#import "ImageUtility.h"
+#import "ViewController+OrbSLAM.h"
 
 #include <iostream>
 #include <boost/thread.hpp>
+
+#import "ImageUtility.h"
+#import "ViewController+InfoLabels.h"
+
 #include "../ORB_SLAM/LocalMapping.hpp"
 #include "../ORB_SLAM/LoopClosing.hpp"
 #include "../ORB_SLAM/KeyFrameDatabase.hpp"
@@ -20,7 +22,7 @@
 
 using namespace cv;
 
-@implementation ViewController (ORB_SLAM)
+@implementation ViewController (OrbSLAM)
 
 ORB_SLAM::Map*              _World;
 ORB_SLAM::Tracking*         _Tracker;
@@ -31,7 +33,7 @@ ORB_SLAM::LoopClosing*      _LoopCloser;
 
 bool isVocabLoaded = false;
     
-- (void) initORB_SLAM {
+- (void) initOrbSLAM {
     [self.stateLabel setText:@"state: Loading vocabulary"];
     [self.startBtn setEnabled:false];
     [self.resetBtn setEnabled:false];
@@ -45,7 +47,7 @@ bool isVocabLoaded = false;
         if (! isVocabLoaded) {
             isVocabLoaded = _Vocabulary->loadFromBinaryFile(ORBvoc);
             if(! isVocabLoaded) {
-                std::cerr << "Failed to load vocabulary" << std::endl;
+                NSLog(@"Failed to load vocabulary.");
                 exit(-1);
             }
         }

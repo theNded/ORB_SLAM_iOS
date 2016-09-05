@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		3D82212E4DA6BAECA1940EFD /* libPods-SLAM.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 80469BD2208B0D00566AE01A /* libPods-SLAM.a */; };
 		701B6EEE1BD3D020009E14DF /* ImageUtility.mm in Sources */ = {isa = PBXBuildFile; fileRef = 701B6EED1BD3D020009E14DF /* ImageUtility.mm */; };
-		701B6F031BD3D4BC009E14DF /* ViewController+InfoDisplay.mm in Sources */ = {isa = PBXBuildFile; fileRef = 701B6EFF1BD3D4BC009E14DF /* ViewController+InfoDisplay.mm */; };
-		701B6F041BD3D4BC009E14DF /* ViewController+MetalRendering.mm in Sources */ = {isa = PBXBuildFile; fileRef = 701B6F011BD3D4BC009E14DF /* ViewController+MetalRendering.mm */; };
-		701B6F071BD3D4C9009E14DF /* ViewController+ORB_SLAM.mm in Sources */ = {isa = PBXBuildFile; fileRef = 701B6F061BD3D4C9009E14DF /* ViewController+ORB_SLAM.mm */; };
-		701ECDAF1BD777BC00FA3E7D /* ViewController+PoseGraph.mm in Sources */ = {isa = PBXBuildFile; fileRef = 701ECDAE1BD777BC00FA3E7D /* ViewController+PoseGraph.mm */; };
-		701ECDDF1BD78ED300FA3E7D /* ViewController+RGBSource.mm in Sources */ = {isa = PBXBuildFile; fileRef = 701ECDDE1BD78ED300FA3E7D /* ViewController+RGBSource.mm */; };
+		701B6F031BD3D4BC009E14DF /* ViewController+InfoLabels.mm in Sources */ = {isa = PBXBuildFile; fileRef = 701B6EFF1BD3D4BC009E14DF /* ViewController+InfoLabels.mm */; };
+		701B6F041BD3D4BC009E14DF /* ViewController+MetalView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 701B6F011BD3D4BC009E14DF /* ViewController+MetalView.mm */; };
+		701B6F071BD3D4C9009E14DF /* ViewController+OrbSLAM.mm in Sources */ = {isa = PBXBuildFile; fileRef = 701B6F061BD3D4C9009E14DF /* ViewController+OrbSLAM.mm */; };
+		701ECDAF1BD777BC00FA3E7D /* ViewController+SceneView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 701ECDAE1BD777BC00FA3E7D /* ViewController+SceneView.mm */; };
+		701ECDDF1BD78ED300FA3E7D /* ViewController+Camera.mm in Sources */ = {isa = PBXBuildFile; fileRef = 701ECDDE1BD78ED300FA3E7D /* ViewController+Camera.mm */; };
 		7038E6761BD16F9800C5EEFC /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7038E56E1BD16F9800C5EEFC /* AppDelegate.m */; };
 		7038E6771BD16F9800C5EEFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7038E56F1BD16F9800C5EEFC /* Assets.xcassets */; };
 		7038E67A1BD16F9800C5EEFC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7038E5731BD16F9800C5EEFC /* Main.storyboard */; };
@@ -81,22 +81,23 @@
 		70E7884B1BD701A2006949CA /* libcholmod.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70E788461BD701A2006949CA /* libcholmod.a */; };
 		70E7884C1BD701A2006949CA /* libCOLAMD.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 70E788471BD701A2006949CA /* libCOLAMD.a */; };
 		B50BCB6B1D7BF22500BB223E /* ORBvoc.binary in Resources */ = {isa = PBXBuildFile; fileRef = B50BCB6A1D7BF22500BB223E /* ORBvoc.binary */; };
+		B5E728A41D7D0B680064AC00 /* ViewController+ImageView.mm in Sources */ = {isa = PBXBuildFile; fileRef = B5E728A31D7D0B680064AC00 /* ViewController+ImageView.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		6ECE1116E1248AF30EBA206C /* Pods-SLAM.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLAM.release.xcconfig"; path = "Pods/Target Support Files/Pods-SLAM/Pods-SLAM.release.xcconfig"; sourceTree = "<group>"; };
 		701B6EEC1BD3D020009E14DF /* ImageUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageUtility.h; sourceTree = "<group>"; };
 		701B6EED1BD3D020009E14DF /* ImageUtility.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ImageUtility.mm; sourceTree = "<group>"; };
-		701B6EFE1BD3D4BC009E14DF /* ViewController+InfoDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ViewController+InfoDisplay.h"; path = "Categories/ViewController+InfoDisplay.h"; sourceTree = "<group>"; };
-		701B6EFF1BD3D4BC009E14DF /* ViewController+InfoDisplay.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "ViewController+InfoDisplay.mm"; path = "Categories/ViewController+InfoDisplay.mm"; sourceTree = "<group>"; };
-		701B6F001BD3D4BC009E14DF /* ViewController+MetalRendering.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ViewController+MetalRendering.h"; path = "Categories/ViewController+MetalRendering.h"; sourceTree = "<group>"; };
-		701B6F011BD3D4BC009E14DF /* ViewController+MetalRendering.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "ViewController+MetalRendering.mm"; path = "Categories/ViewController+MetalRendering.mm"; sourceTree = "<group>"; };
-		701B6F051BD3D4C9009E14DF /* ViewController+ORB_SLAM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ViewController+ORB_SLAM.h"; path = "Categories/ViewController+ORB_SLAM.h"; sourceTree = "<group>"; };
-		701B6F061BD3D4C9009E14DF /* ViewController+ORB_SLAM.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "ViewController+ORB_SLAM.mm"; path = "Categories/ViewController+ORB_SLAM.mm"; sourceTree = "<group>"; };
-		701ECDAD1BD777BC00FA3E7D /* ViewController+PoseGraph.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ViewController+PoseGraph.h"; path = "Categories/ViewController+PoseGraph.h"; sourceTree = "<group>"; };
-		701ECDAE1BD777BC00FA3E7D /* ViewController+PoseGraph.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "ViewController+PoseGraph.mm"; path = "Categories/ViewController+PoseGraph.mm"; sourceTree = "<group>"; };
-		701ECDDD1BD78ED300FA3E7D /* ViewController+RGBSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ViewController+RGBSource.h"; path = "Categories/ViewController+RGBSource.h"; sourceTree = "<group>"; };
-		701ECDDE1BD78ED300FA3E7D /* ViewController+RGBSource.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "ViewController+RGBSource.mm"; path = "Categories/ViewController+RGBSource.mm"; sourceTree = "<group>"; };
+		701B6EFE1BD3D4BC009E14DF /* ViewController+InfoLabels.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ViewController+InfoLabels.h"; path = "Categories/ViewController+InfoLabels.h"; sourceTree = "<group>"; };
+		701B6EFF1BD3D4BC009E14DF /* ViewController+InfoLabels.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "ViewController+InfoLabels.mm"; path = "Categories/ViewController+InfoLabels.mm"; sourceTree = "<group>"; };
+		701B6F001BD3D4BC009E14DF /* ViewController+MetalView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ViewController+MetalView.h"; path = "Categories/ViewController+MetalView.h"; sourceTree = "<group>"; };
+		701B6F011BD3D4BC009E14DF /* ViewController+MetalView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "ViewController+MetalView.mm"; path = "Categories/ViewController+MetalView.mm"; sourceTree = "<group>"; };
+		701B6F051BD3D4C9009E14DF /* ViewController+OrbSLAM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ViewController+OrbSLAM.h"; path = "Categories/ViewController+OrbSLAM.h"; sourceTree = "<group>"; };
+		701B6F061BD3D4C9009E14DF /* ViewController+OrbSLAM.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "ViewController+OrbSLAM.mm"; path = "Categories/ViewController+OrbSLAM.mm"; sourceTree = "<group>"; };
+		701ECDAD1BD777BC00FA3E7D /* ViewController+SceneView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ViewController+SceneView.h"; path = "Categories/ViewController+SceneView.h"; sourceTree = "<group>"; };
+		701ECDAE1BD777BC00FA3E7D /* ViewController+SceneView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "ViewController+SceneView.mm"; path = "Categories/ViewController+SceneView.mm"; sourceTree = "<group>"; };
+		701ECDDD1BD78ED300FA3E7D /* ViewController+Camera.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ViewController+Camera.h"; path = "Categories/ViewController+Camera.h"; sourceTree = "<group>"; };
+		701ECDDE1BD78ED300FA3E7D /* ViewController+Camera.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "ViewController+Camera.mm"; path = "Categories/ViewController+Camera.mm"; sourceTree = "<group>"; };
 		7038E56A1BD1690F00C5EEFC /* libg2o.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libg2o.a; path = dependency/libg2o.a; sourceTree = "<group>"; };
 		7038E56D1BD16F9800C5EEFC /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7038E56E1BD16F9800C5EEFC /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -364,6 +365,8 @@
 		80469BD2208B0D00566AE01A /* libPods-SLAM.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-SLAM.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A4F3401FC3BF296F464E94B9 /* Pods-SLAM.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SLAM.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SLAM/Pods-SLAM.debug.xcconfig"; sourceTree = "<group>"; };
 		B50BCB6A1D7BF22500BB223E /* ORBvoc.binary */ = {isa = PBXFileReference; lastKnownFileType = file; path = ORBvoc.binary; sourceTree = "<group>"; };
+		B5E728A21D7D0B680064AC00 /* ViewController+ImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ViewController+ImageView.h"; path = "Categories/ViewController+ImageView.h"; sourceTree = "<group>"; };
+		B5E728A31D7D0B680064AC00 /* ViewController+ImageView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; name = "ViewController+ImageView.mm"; path = "Categories/ViewController+ImageView.mm"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -401,9 +404,9 @@
 		701B6EFB1BD3D4B4009E14DF /* Categories */ = {
 			isa = PBXGroup;
 			children = (
+				70DD4C571BD56746001A6A68 /* Data */,
 				70DD4C581BD5677A001A6A68 /* SLAM */,
 				70DD4C591BD56782001A6A68 /* Display */,
-				70DD4C571BD56746001A6A68 /* DataSource */,
 			);
 			name = Categories;
 			sourceTree = "<group>";
@@ -781,19 +784,19 @@
 			isa = PBXGroup;
 			children = (
 				7038E6631BD16F9800C5EEFC /* box.obj */,
+				7038E66E1BD16F9800C5EEFC /* teapot.obj */,
+				7038E6691BD16F9800C5EEFC /* plane.obj */,
 				7038E6641BD16F9800C5EEFC /* box.obj.mtl */,
+				7038E66C1BD16F9800C5EEFC /* Shaders.metal */,
 				7038E6651BD16F9800C5EEFC /* MetalView.h */,
 				7038E6661BD16F9800C5EEFC /* MetalView.m */,
 				7038E6671BD16F9800C5EEFC /* OBJModel.h */,
 				7038E6681BD16F9800C5EEFC /* OBJModel.mm */,
-				7038E6691BD16F9800C5EEFC /* plane.obj */,
 				7038E66A1BD16F9800C5EEFC /* Renderer.h */,
 				7038E66B1BD16F9800C5EEFC /* Renderer.m */,
-				7038E66C1BD16F9800C5EEFC /* Shaders.metal */,
-				7038E66D1BD16F9800C5EEFC /* Shared.h */,
-				7038E66E1BD16F9800C5EEFC /* teapot.obj */,
 				7038E66F1BD16F9800C5EEFC /* Transforms.h */,
 				7038E6701BD16F9800C5EEFC /* Transforms.mm */,
+				7038E66D1BD16F9800C5EEFC /* Shared.h */,
 			);
 			path = Rendering;
 			sourceTree = "<group>";
@@ -846,20 +849,20 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		70DD4C571BD56746001A6A68 /* DataSource */ = {
+		70DD4C571BD56746001A6A68 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				701ECDDD1BD78ED300FA3E7D /* ViewController+RGBSource.h */,
-				701ECDDE1BD78ED300FA3E7D /* ViewController+RGBSource.mm */,
+				701ECDDD1BD78ED300FA3E7D /* ViewController+Camera.h */,
+				701ECDDE1BD78ED300FA3E7D /* ViewController+Camera.mm */,
 			);
-			name = DataSource;
+			name = Data;
 			sourceTree = "<group>";
 		};
 		70DD4C581BD5677A001A6A68 /* SLAM */ = {
 			isa = PBXGroup;
 			children = (
-				701B6F051BD3D4C9009E14DF /* ViewController+ORB_SLAM.h */,
-				701B6F061BD3D4C9009E14DF /* ViewController+ORB_SLAM.mm */,
+				701B6F051BD3D4C9009E14DF /* ViewController+OrbSLAM.h */,
+				701B6F061BD3D4C9009E14DF /* ViewController+OrbSLAM.mm */,
 			);
 			name = SLAM;
 			sourceTree = "<group>";
@@ -867,12 +870,14 @@
 		70DD4C591BD56782001A6A68 /* Display */ = {
 			isa = PBXGroup;
 			children = (
-				701B6EFE1BD3D4BC009E14DF /* ViewController+InfoDisplay.h */,
-				701B6EFF1BD3D4BC009E14DF /* ViewController+InfoDisplay.mm */,
-				701B6F001BD3D4BC009E14DF /* ViewController+MetalRendering.h */,
-				701B6F011BD3D4BC009E14DF /* ViewController+MetalRendering.mm */,
-				701ECDAD1BD777BC00FA3E7D /* ViewController+PoseGraph.h */,
-				701ECDAE1BD777BC00FA3E7D /* ViewController+PoseGraph.mm */,
+				701B6EFE1BD3D4BC009E14DF /* ViewController+InfoLabels.h */,
+				701B6EFF1BD3D4BC009E14DF /* ViewController+InfoLabels.mm */,
+				B5E728A21D7D0B680064AC00 /* ViewController+ImageView.h */,
+				B5E728A31D7D0B680064AC00 /* ViewController+ImageView.mm */,
+				701B6F001BD3D4BC009E14DF /* ViewController+MetalView.h */,
+				701B6F011BD3D4BC009E14DF /* ViewController+MetalView.mm */,
+				701ECDAD1BD777BC00FA3E7D /* ViewController+SceneView.h */,
+				701ECDAE1BD777BC00FA3E7D /* ViewController+SceneView.mm */,
 			);
 			name = Display;
 			sourceTree = "<group>";
@@ -1055,12 +1060,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				7038E6841BD16F9800C5EEFC /* LocalMapping.cpp in Sources */,
-				701B6F071BD3D4C9009E14DF /* ViewController+ORB_SLAM.mm in Sources */,
+				701B6F071BD3D4C9009E14DF /* ViewController+OrbSLAM.mm in Sources */,
 				7038E67C1BD16F9800C5EEFC /* main.m in Sources */,
-				701ECDAF1BD777BC00FA3E7D /* ViewController+PoseGraph.mm in Sources */,
+				701ECDAF1BD777BC00FA3E7D /* ViewController+SceneView.mm in Sources */,
 				7038E6921BD16F9800C5EEFC /* ScoringObject.cpp in Sources */,
-				701B6F041BD3D4BC009E14DF /* ViewController+MetalRendering.mm in Sources */,
+				701B6F041BD3D4BC009E14DF /* ViewController+MetalView.mm in Sources */,
 				7038E6811BD16F9800C5EEFC /* Initializer.cpp in Sources */,
+				B5E728A41D7D0B680064AC00 /* ViewController+ImageView.mm in Sources */,
 				7038E6871BD16F9800C5EEFC /* MapPoint.cpp in Sources */,
 				7038E68B1BD16F9800C5EEFC /* PnPsolver.cpp in Sources */,
 				7038E6E71BD16F9800C5EEFC /* MetalView.m in Sources */,
@@ -1076,7 +1082,7 @@
 				7038E68C1BD16F9800C5EEFC /* Sim3Solver.cpp in Sources */,
 				7038E6801BD16F9800C5EEFC /* Frame.cpp in Sources */,
 				7038E6881BD16F9800C5EEFC /* Optimizer.cpp in Sources */,
-				701B6F031BD3D4BC009E14DF /* ViewController+InfoDisplay.mm in Sources */,
+				701B6F031BD3D4BC009E14DF /* ViewController+InfoLabels.mm in Sources */,
 				7038E6901BD16F9800C5EEFC /* FORB.cpp in Sources */,
 				7038E6851BD16F9800C5EEFC /* LoopClosing.cpp in Sources */,
 				7038E67D1BD16F9800C5EEFC /* Converter.cpp in Sources */,
@@ -1091,7 +1097,7 @@
 				70DD4C621BD59059001A6A68 /* CVImageIO.mm in Sources */,
 				7038E6EE1BD16F9800C5EEFC /* Profiler.mm in Sources */,
 				7038E6ED1BD16F9800C5EEFC /* Transforms.mm in Sources */,
-				701ECDDF1BD78ED300FA3E7D /* ViewController+RGBSource.mm in Sources */,
+				701ECDDF1BD78ED300FA3E7D /* ViewController+Camera.mm in Sources */,
 				7038E6EB1BD16F9800C5EEFC /* Shaders.metal in Sources */,
 				7038E6761BD16F9800C5EEFC /* AppDelegate.m in Sources */,
 				7038E6821BD16F9800C5EEFC /* KeyFrame.cpp in Sources */,

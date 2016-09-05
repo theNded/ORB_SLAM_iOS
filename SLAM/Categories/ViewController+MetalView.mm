@@ -6,7 +6,8 @@
 //  Copyright © 2015 Xin Sun. All rights reserved.
 //
 
-#import "ViewController+MetalRendering.h"
+#import "ViewController+MetalView.h"
+
 #import "OBJModel.h"
 #import "Shared.h"
 #import "Transforms.h"
@@ -14,7 +15,7 @@
 using namespace cv;
 
 
-@implementation ViewController (MetalRendering)
+@implementation ViewController (MetalView)
 
     Renderer *_renderer;
     id<MTLBuffer> _vertexBuffer;
@@ -28,7 +29,7 @@ static float DegToRad(float deg)
     return deg * (M_PI / 180);
 }
 
-- (void)initRendering {
+- (void)initMetalView {
     _renderer = [[Renderer alloc] initWithLayer:(CAMetalLayer *)self.metalView.layer];
     _renderer.vertexFunctionName = @"vertex_main";
     _renderer.fragmentFunctionName = @"fragment_main";
@@ -49,8 +50,8 @@ static float DegToRad(float deg)
     }
 }
 
-- (void)drawObjectWith:(const Mat&)R andT:(const Mat&)T {
-    
+- (void) updateMetalViewWithR:(const cv::Mat&)R andT:(const cv::Mat&)T {
+
     float qx,qy,qz,qw;
     qw = sqrt(1.0 + R.at<float>(0,0) + R.at<float>(1,1) + R.at<float>(2,2)) / 2.0;
     qx = (R.at<float>(2,1) - R.at<float>(1,2)) / (4*qw) ;
@@ -97,9 +98,7 @@ static float DegToRad(float deg)
     [self redraw];
 }
 
-- (void)redraw
-{
-    
+- (void)redraw {
     [_renderer startFrame];
     
     [_renderer drawTrianglesWithInterleavedBuffer:_vertexBuffer

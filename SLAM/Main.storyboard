@@ -88,28 +88,30 @@
                                 </connections>
                             </button>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ClG-0B-0l7" customClass="MetalView">
-                                <rect key="frame" x="402" y="14" width="314" height="238"/>
+                                <rect key="frame" x="383" y="0.0" width="353" height="265"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="ClG-0B-0l7" secondAttribute="height" multiplier="640:480" id="0P9-B6-aYH"/>
+                                    <constraint firstAttribute="width" constant="353" id="QPy-c8-eas"/>
+                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="NRu-JK-5cj" firstAttribute="leading" secondItem="ba3-8F-yea" secondAttribute="trailing" id="0u1-Tc-kMY"/>
                             <constraint firstItem="fjc-tE-Dv8" firstAttribute="top" secondItem="pep-AL-IW3" secondAttribute="bottom" id="2H7-vW-sK0"/>
-                            <constraint firstItem="ClG-0B-0l7" firstAttribute="trailing" secondItem="PeD-PE-SFG" secondAttribute="trailingMargin" id="4So-EJ-JIc"/>
                             <constraint firstItem="bQ2-OO-Cx4" firstAttribute="leading" secondItem="PeD-PE-SFG" secondAttribute="leadingMargin" id="9bo-Wj-FVE"/>
                             <constraint firstAttribute="trailingMargin" secondItem="YXs-ul-OEg" secondAttribute="trailing" constant="74" id="9e5-Ic-51J"/>
                             <constraint firstItem="bQ2-OO-Cx4" firstAttribute="top" secondItem="4pI-Pl-Nl7" secondAttribute="bottom" constant="15" id="9sb-Pw-YNa"/>
                             <constraint firstItem="ba3-8F-yea" firstAttribute="leading" secondItem="PeD-PE-SFG" secondAttribute="leadingMargin" constant="-20" id="DQW-Mo-F3a"/>
-                            <constraint firstItem="ClG-0B-0l7" firstAttribute="centerX" secondItem="NRu-JK-5cj" secondAttribute="centerX" id="EWQ-jP-toa"/>
                             <constraint firstAttribute="trailingMargin" secondItem="NRu-JK-5cj" secondAttribute="trailing" constant="-20" id="GsL-r2-eRp"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ClG-0B-0l7" secondAttribute="trailing" constant="-20" id="OFZ-H8-JHZ"/>
                             <constraint firstItem="fjc-tE-Dv8" firstAttribute="top" secondItem="62H-sq-HQZ" secondAttribute="bottom" constant="8" id="RMw-gi-Jl2"/>
-                            <constraint firstItem="ClG-0B-0l7" firstAttribute="top" secondItem="wL8-W2-cej" secondAttribute="bottom" constant="14" id="YEB-yw-Z45"/>
                             <constraint firstItem="fjc-tE-Dv8" firstAttribute="top" secondItem="bQ2-OO-Cx4" secondAttribute="bottom" id="ZD5-c6-77x"/>
                             <constraint firstItem="NRu-JK-5cj" firstAttribute="top" secondItem="wL8-W2-cej" secondAttribute="bottom" id="euz-Me-Nho"/>
                             <constraint firstItem="fjc-tE-Dv8" firstAttribute="top" secondItem="n9x-Bd-gUT" secondAttribute="bottom" id="feQ-HV-4J7"/>
-                            <constraint firstItem="ClG-0B-0l7" firstAttribute="centerY" secondItem="NRu-JK-5cj" secondAttribute="centerY" id="jMK-CF-Scj"/>
                             <constraint firstItem="pep-AL-IW3" firstAttribute="leading" secondItem="bQ2-OO-Cx4" secondAttribute="trailing" constant="8" id="m8x-9b-yuh"/>
                             <constraint firstItem="ba3-8F-yea" firstAttribute="top" secondItem="wL8-W2-cej" secondAttribute="bottom" id="oAg-OI-H9x"/>
+                            <constraint firstItem="ClG-0B-0l7" firstAttribute="top" secondItem="wL8-W2-cej" secondAttribute="bottom" id="ogV-Ax-JI9"/>
                             <constraint firstItem="YXs-ul-OEg" firstAttribute="leading" secondItem="62H-sq-HQZ" secondAttribute="trailing" constant="82" id="qAU-zU-Xra"/>
                             <constraint firstItem="n9x-Bd-gUT" firstAttribute="leading" secondItem="pep-AL-IW3" secondAttribute="trailing" constant="8" id="rf0-kh-ga2"/>
                             <constraint firstItem="4pI-Pl-Nl7" firstAttribute="leading" secondItem="PeD-PE-SFG" secondAttribute="leadingMargin" id="tqP-2d-P2S"/>

@@ -8,25 +8,31 @@
 
 #import "ViewController.h"
 
-#import "Categories/ViewController+RGBSource.h"
-#import "Categories/ViewController+InfoDisplay.h"
-#import "Categories/ViewController+MetalRendering.h"
-#import "Categories/ViewController+ORB_SLAM.h"
-#import "Categories/ViewController+PoseGraph.h"
+#import "Categories/ViewController+Camera.h"
+#import "Categories/ViewController+OrbSLAM.h"
+
+#import "Categories/ViewController+InfoLabels.h"
+#import "Categories/ViewController+ImageView.h"
+#import "Categories/ViewController+MetalView.h"
+#import "Categories/ViewController+SceneView.h"
 
 @implementation ViewController
 
 - (void)viewDidLoad {    
     [super viewDidLoad];
     
-    [self initProfiler];
-    [self initRendering];
-    [self initORB_SLAM];
-    [self initScene];
+    [self initCamera];
+
+    [self initOrbSLAM];
+
+    [self initInfoLabels];
+    [self initImageView];
+    [self initMetalView];
+    [self initSceneView];
 }
 
 -(IBAction)startSLAM:(id)sender {
-    [self runFromAVFoundation];
+    [self startCameraCapturing];
 }
 
 - (IBAction)resetSLAM:(id)sender {

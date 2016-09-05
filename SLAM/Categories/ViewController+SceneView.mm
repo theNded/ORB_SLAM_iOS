@@ -6,9 +6,9 @@
 //  Copyright © 2015 Xin Sun. All rights reserved.
 //
 
-#import "ViewController+PoseGraph.h"
+#import "ViewController+SceneView.h"
 
-@implementation ViewController (PoseGraph)
+@implementation ViewController (SceneView)
 
 SCNNode*   _trajectoryNode;
 SCNNode*   _poseNode;
@@ -17,7 +17,7 @@ SCNVector3 _prevPose;
 
 bool initialPose = true;
 
-- (void) initScene {
+- (void) initSceneView {
     SCNScene *scene = [SCNScene scene];
     
     SCNNode *ambientLightNode = [SCNNode node];
@@ -50,7 +50,7 @@ bool initialPose = true;
     [scene.rootNode addChildNode:_mapNode];
 }
 
-- (void) addCameraWithR:(cv::Mat &)R andT:(cv::Mat &)T {
+- (void) updateSceneViewWithR:(cv::Mat &)R andT:(cv::Mat &)T {
     //cv::Mat_<float> origin = - R.t() * T;
     cv::Mat Rwc = R.t();
     cv::Mat Twc = -R.t() * T;
@@ -76,7 +76,7 @@ bool initialPose = true;
     _prevPose = vo;
 }
 
-- (void) addMapPoints:(std::vector<ORB_SLAM::MapPoint *>)points {
+- (void) updateSceneViewWithMapPoints:(std::vector<ORB_SLAM::MapPoint *>&) points {
     std::vector<SCNVector3> vertices;
     for(size_t i = 0, iend = points.size(); i < iend; ++i) {
         if(points[i]->isBad())

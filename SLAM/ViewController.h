@@ -7,10 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <SceneKit/SceneKit.h>
+
 #import <opencv2/highgui/cap_ios.h>
+
 #import "MetalView.h"
 #import "Profiler.h"
-#import <SceneKit/SceneKit.h>
 
 
 @interface ViewController : UIViewController

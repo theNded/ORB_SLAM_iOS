@@ -7,11 +7,13 @@
 //
 
 #import "ViewController.h"
+
 #include "../ORB_SLAM/MapPoint.hpp"
 
-@interface ViewController (ORB_SLAM)
+@interface ViewController (OrbSLAM)
     
-- (void) initORB_SLAM;
+- (void) initOrbSLAM;
+- (void) updateOrbSLAM;
 
 - (void) trackFrame:(cv::Mat&)colorImage
            andDepth:(cv::Mat&)depthImage;

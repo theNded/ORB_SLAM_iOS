@@ -9,11 +9,11 @@
 #import "Renderer.h"
 #import "ViewController.h"
 
-@interface ViewController (MetalRendering)
+@interface ViewController (MetalView)
 
+- (void) initMetalView;
+- (void) updateMetalViewWithR:(const cv::Mat&)R andT:(const cv::Mat&)T;
 
-- (void) initRendering;
 - (void) loadModel;
-- (void) drawObjectWith:(const cv::Mat&)R andT:(const cv::Mat&)T;
 
 @end
