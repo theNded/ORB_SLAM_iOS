@@ -64,15 +64,16 @@ bool initialPose = true;
         [_posesNode addChildNode:[self makePyramidWithO:_vo andP1:_vp1 P2:_vp2 P3:_vp3 P4:_vp4
                                                 ofColor:[UIColor blueColor]]];
     
-    cv::Mat Rwc = R.t();
-    cv::Mat Twc = -R.t() * T;
+    // Transform from Camera to World (c2w)
+    cv::Mat Rc2w = R.t();
+    cv::Mat Tc2w = -R.t() * T;
 
     const float d = 0.08;
-    cv::Mat_<float> o  = Rwc * (cv::Mat_<float>(3,1) <<  0,     0,      0) + Twc;
-    cv::Mat_<float> p1 = Rwc * (cv::Mat_<float>(3,1) <<  d, d *0.8, d*0.5) + Twc;
-    cv::Mat_<float> p2 = Rwc * (cv::Mat_<float>(3,1) <<  d, -d*0.8, d*0.5) + Twc;
-    cv::Mat_<float> p3 = Rwc * (cv::Mat_<float>(3,1) << -d, -d*0.8, d*0.5) + Twc;
-    cv::Mat_<float> p4 = Rwc * (cv::Mat_<float>(3,1) << -d, d *0.8, d*0.5) + Twc;
+    cv::Mat_<float> o  = Rc2w * (cv::Mat_<float>(3,1) <<  0,     0,      0) + Tc2w;
+    cv::Mat_<float> p1 = Rc2w * (cv::Mat_<float>(3,1) <<  d, d *0.8, d*0.5) + Tc2w;
+    cv::Mat_<float> p2 = Rc2w * (cv::Mat_<float>(3,1) <<  d, -d*0.8, d*0.5) + Tc2w;
+    cv::Mat_<float> p3 = Rc2w * (cv::Mat_<float>(3,1) << -d, -d*0.8, d*0.5) + Tc2w;
+    cv::Mat_<float> p4 = Rc2w * (cv::Mat_<float>(3,1) << -d, d *0.8, d*0.5) + Tc2w;
     
     _vo  = SCNVector3Make(o(0),  -o(1),  -o(2));
     _vp1 = SCNVector3Make(p1(0), -p1(1), -p1(2));

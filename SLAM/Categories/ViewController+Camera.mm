@@ -26,6 +26,7 @@ AVCaptureDevice*   _device;
 dispatch_queue_t   _trackingQueue;
 // A not strict lock
 bool               _isTracking = false;
+boost::mutex       _mutex;
 
 - (void) initCamera {
     [self setupCamera];
@@ -56,36 +57,39 @@ didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer
             [self.profiler end];
             
             // OrbSLAM condition variables
-            int trackingState                                  = [self getTrackingState];
-            int keyFrameCount                                  = [self getnKF];
-            int mapPointCount                                  = [self getnMP];
-            std::vector<ORB_SLAM::MapPoint *> mapPoints        = [self getMapPoints];
-            std::vector<ORB_SLAM::MapPoint*> *matchedMapPoints = [self getMatchedMapPoints];
-            std::vector<cv::KeyPoint> *currentKeyPoints        = [self getCurrentKeyPoints];
-            std::vector<bool> *outliers                        = [self getOutliers];
-            cv::Mat R                                          = [self getCurrentPose_R];
-            cv::Mat T                                          = [self getCurrentPose_T];
-            
-            // Update Views
-            [self updateInfoLabelsWithState:trackingState
-                              KeyFrameCount:keyFrameCount
-                           andMapPointCount:mapPointCount];
-
-            if (trackingState == TrackingState::WORKING) {
-                [self updateMetalViewWithR:R andT:T];
+            {
+                boost::mutex::scoped_lock lock(_mutex);
+                int trackingState                                  = [self getTrackingState];
+                int keyFrameCount                                  = [self getnKF];
+                int mapPointCount                                  = [self getnMP];
+                std::vector<ORB_SLAM::MapPoint *> mapPoints        = [self getMapPoints];
+                std::vector<ORB_SLAM::MapPoint*> *matchedMapPoints = [self getMatchedMapPoints];
+                std::vector<cv::KeyPoint> *currentKeyPoints        = [self getCurrentKeyPoints];
+                std::vector<bool> *outliers                        = [self getOutliers];
+                cv::Mat R                                          = [self getCurrentPose_R];
+                cv::Mat T                                          = [self getCurrentPose_T];
                 
-                [self updateSceneViewWithR:R andT:T];
-                [self updateSceneViewWithMapPoints:mapPoints];
+                // Update Views
+                [self updateInfoLabelsWithState:trackingState
+                                  KeyFrameCount:keyFrameCount
+                               andMapPointCount:mapPointCount];
                 
-                [self updateImageViewWithImage:_inputImage
-                              MatchedMapPoints:matchedMapPoints
-                              CurrentKeyPoints:currentKeyPoints
-                                   andOutliers:outliers];
-            } else if (trackingState == TrackingState::INITIALIZING) {
-                [self updateImageViewWithImage:_inputImage
-                                 InitKeyPoints:[self getInitKeyPoints]
-                              CurrentKeyPoints:currentKeyPoints
-                                    andMatches:[self getMatches]];
+                if (trackingState == TrackingState::WORKING) {
+                    [self updateMetalViewWithR:R andT:T];
+                    
+                    [self updateSceneViewWithR:R andT:T];
+                    [self updateSceneViewWithMapPoints:mapPoints];
+                    
+                    [self updateImageViewWithImage:_inputImage
+                                  MatchedMapPoints:matchedMapPoints
+                                  CurrentKeyPoints:currentKeyPoints
+                                       andOutliers:outliers];
+                } else if (trackingState == TrackingState::INITIALIZING) {
+                    [self updateImageViewWithImage:_inputImage
+                                     InitKeyPoints:[self getInitKeyPoints]
+                                  CurrentKeyPoints:currentKeyPoints
+                                        andMatches:[self getMatches]];
+                }
             }
 
             _isTracking = false;

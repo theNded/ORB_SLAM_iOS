@@ -51,30 +51,29 @@ static float DegToRad(float deg)
 }
 
 - (void) updateMetalViewWithR:(const cv::Mat&)R andT:(const cv::Mat&)T {
-
-    float qx,qy,qz,qw;
+/*
+ * Quaternion in y and z direction is negative
+    float qx, qy, qz, qw;
     qw = sqrt(1.0 + R.at<float>(0,0) + R.at<float>(1,1) + R.at<float>(2,2)) / 2.0;
-    qx = (R.at<float>(2,1) - R.at<float>(1,2)) / (4*qw) ;
+    qx =  (R.at<float>(2,1) - R.at<float>(1,2)) / (4*qw) ;
     qy = -(R.at<float>(0,2) - R.at<float>(2,0)) / (4*qw) ;
     qz = -(R.at<float>(1,0) - R.at<float>(0,1)) / (4*qw) ;
     
-    //Mat T_p = R.t()*T;
+    simd::float4 c1 = { 1 - 2*qy*qy - 2*qz*qz, 2*qx*qy + 2*qz*qw, 2*qx*qz - 2*qy*qw, 0 };
+    simd::float4 c2 = { 2*qx*qy - 2*qz*qw, 1 - 2*qx*qx - 2*qz*qz, 2*qy*qz + 2*qx*qw, 0 };
+    simd::float4 c3 = { 2*qx*qz + 2*qy*qw, 2*qy*qz - 2*qx*qw, 1 - 2*qx*qx - 2*qy*qy, 0 };
+    simd::float4 c4 = { T.at<float>(0), -T.at<float>(1), -T.at<float>(2), 1 };
+ */
     
-    //simd::float4 r1 = { 1 - 2*qy*qy - 2*qz*qz, 2*qx*qy - 2*qz*qw, 2*qx*qz + 2*qy*qw, 0 };
-    //simd::float4 r2 = { 2*qx*qy + 2*qz*qw, 1 - 2*qx*qx - 2*qz*qz, 2*qy*qz - 2*qx*qw, 0 };
-    //simd::float4 r3 = { 2*qx*qz - 2*qy*qw, 2*qy*qz + 2*qx*qw, 1 - 2*qx*qx - 2*qy*qy, 0 };
-    simd::float4 r1 = { 1 - 2*qy*qy - 2*qz*qz, 2*qx*qy + 2*qz*qw, 2*qx*qz - 2*qy*qw, 0 };
-    simd::float4 r2 = { 2*qx*qy - 2*qz*qw, 1 - 2*qx*qx - 2*qz*qz, 2*qy*qz + 2*qx*qw, 0 };
-    simd::float4 r3 = { 2*qx*qz + 2*qy*qw, 2*qy*qz - 2*qx*qw, 1 - 2*qx*qx - 2*qy*qy, 0 };
-    simd::float4 r4 = { T.at<float>(0), -T.at<float>(1), -T.at<float>(2), 1 };
-    
-    //simd::float4 r1 = { R.at<float>(0,0), R.at<float>(0,1), R.at<float>(0,2), 0 };
-    //simd::float4 r2 = { R.at<float>(1,0), R.at<float>(1,1), R.at<float>(1,2), 0 };
-    //simd::float4 r3 = { R.at<float>(2,0), R.at<float>(2,1), R.at<float>(2,2), 0 };
-    //simd::float4 r4 = { -T.at<float>(0), T.at<float>(1), T.at<float>(2), 1 };
+    // The equal form where y and z is negative in quaternion
+    simd::float4 c1 = { R.at<float>(0,0), -R.at<float>(1,0), -R.at<float>(2,0), 0 };
+    simd::float4 c2 = { -R.at<float>(0,1), R.at<float>(1,1), R.at<float>(2,1), 0 };
+    simd::float4 c3 = { -R.at<float>(0,2), R.at<float>(1,2), R.at<float>(2,2), 0 };
+    simd::float4 c4 = { T.at<float>(0), -T.at<float>(1), -T.at<float>(2), 1 };
     
     simd::float4x4 modelMatrix = matrix_uniform_scale(0.3);
-    simd::float4x4 viewMatrix = {r1, r2, r3, r4};
+    simd::float4x4 viewMatrix = {c1, c2, c3, c4};
+    viewMatrix.columns[3].z -= 0.1f;
     //viewMatrix.columns[3].z = -0.5; // translate camera back along Z axis
     
     const float near = 0.02;
